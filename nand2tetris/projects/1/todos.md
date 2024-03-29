@@ -1,5 +1,5 @@
 - [x] And.hdl
-- [ ] And16.hdl
+- [x] And16.hdl
 - [ ] DMux.hdl
 - [ ] DMux4Way.hdl
 - [ ] DMux8Way.hdl
