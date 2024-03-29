@@ -11,5 +11,5 @@
 - [x] Not16.hdl
 - [x] Or.hdl
 - [x] Or16.hdl
-- [ ] Or8Way.hdl
+- [x] Or8Way.hdl
 - [ ] Xor.hdl
