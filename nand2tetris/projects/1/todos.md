@@ -1,8 +1,8 @@
 - [x] And.hdl
 - [x] And16.hdl
-- [ ] DMux.hdl
-- [ ] DMux4Way.hdl
-- [ ] DMux8Way.hdl
+- [x] DMux.hdl
+- [x] DMux4Way.hdl
+- [x] DMux8Way.hdl
 - [x] Mux.hdl
 - [x] Mux16.hdl
 - [x] Mux4Way16.hdl
