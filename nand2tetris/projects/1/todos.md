@@ -3,13 +3,13 @@
 - [ ] DMux.hdl
 - [ ] DMux4Way.hdl
 - [ ] DMux8Way.hdl
-- [ ] Mux.hdl
-- [ ] Mux16.hdl
-- [ ] Mux4Way16.hdl
-- [ ] Mux8Way16.hdl
+- [x] Mux.hdl
+- [x] Mux16.hdl
+- [x] Mux4Way16.hdl
+- [x] Mux8Way16.hdl
 - [x] Not.hdl
 - [x] Not16.hdl
 - [x] Or.hdl
 - [x] Or16.hdl
 - [x] Or8Way.hdl
-- [ ] Xor.hdl
+- [x] Xor.hdl
