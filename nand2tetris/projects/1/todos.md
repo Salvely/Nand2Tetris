@@ -1,4 +1,4 @@
-- [ ] And.hdl
+- [x] And.hdl
 - [ ] And16.hdl
 - [ ] DMux.hdl
 - [ ] DMux4Way.hdl
