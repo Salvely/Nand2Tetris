@@ -7,8 +7,8 @@
 - [ ] Mux16.hdl
 - [ ] Mux4Way16.hdl
 - [ ] Mux8Way16.hdl
-- [ ] Not.hdl
-- [ ] Not16.hdl
+- [x] Not.hdl
+- [x] Not16.hdl
 - [ ] Or.hdl
 - [ ] Or16.hdl
 - [ ] Or8Way.hdl
