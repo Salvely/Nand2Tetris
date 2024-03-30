@@ -1,3 +1,3 @@
-- [ ] RAM16K.hdl
-- [ ] RAM4K.hdl
-- [ ] RAM512.hdl
+- [x] RAM4K.hdl
+- [x] RAM16K.hdl
+- [x] RAM512.hdl

@@ -14,5 +14,13 @@ CHIP PC {
     OUT out[16];
     
     PARTS:
-    //// Replace this comment with your code.
+    // Replace this comment with your code.
+    Add16(a=dffout, b[0]=true,b[1..15]=false,out=newpc);
+    Mux16(a=dffout, b=newpc, sel=inc, out=incresult);
+    
+    Mux16(a=incresult, b=in, sel=load, out=loadresult);
+
+    Mux16(a=loadresult, b[0..15]=false, sel=reset, out=dffin);
+
+    Register(in=dffin, load=true, out=dffout, out=out);
 }
