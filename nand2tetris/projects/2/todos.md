@@ -1,5 +1,5 @@
-- [ ] Add16.hdl
+- [x] HalfAdder.hdl
+- [x] FullAdder.hdl
+- [x] Add16.hdl
+- [x] Inc16.hdl
 - [ ] ALU.hdl
-- [ ] FullAdder.hdl
-- [ ] HalfAdder.hdl
-- [ ] Inc16.hdl
