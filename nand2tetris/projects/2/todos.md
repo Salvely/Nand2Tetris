@@ -2,4 +2,4 @@
 - [x] FullAdder.hdl
 - [x] Add16.hdl
 - [x] Inc16.hdl
-- [ ] ALU.hdl
+- [x] ALU.hdl
