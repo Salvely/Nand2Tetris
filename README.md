@@ -10,8 +10,8 @@
 - [x] Project 3: Memory
 - [x] Reading 4
 - [x] Project 4: Machine Language
-- [ ] Reading 5
-- [ ] Project 5: Computer Architecture
+- [x] Reading 5
+- [x] Project 5: Computer Architecture
 - [ ] Reading 6
 - [ ] Project 6: Assembler
 - [ ] Reading 7
