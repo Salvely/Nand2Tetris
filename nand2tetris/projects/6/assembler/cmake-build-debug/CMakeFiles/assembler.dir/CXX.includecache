@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/codegen.hh
+string
+-
+vector
+-
+unordered_map
+-
+
+E:/projects/Nand2Tetris/nand2tetris/projects/6/assembler/src/codegen.cpp
+codegen.hh
+E:/projects/Nand2Tetris/nand2tetris/projects/6/assembler/src/codegen.hh
+bitset
+-
+string
+-
+

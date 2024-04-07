@@ -1,28 +1,44 @@
+#ifndef __PARSER_HH__
+#define __PARSER_HH__
+
 #include <string>
 #include <fstream>
+#include <bitset>
+#include "symbol_table.hh"
+#include "codegen.hh"
 
-using std::istream;
-using std::ostream;
+using std::ifstream;
+using std::ofstream;
 using std::string;
 
 enum c_type
 {
     A_Command,
     C_Command,
-    L_Command
+    L_Command,
+    WHITE_SPACE,
+    ILLEGAL,
 };
 
 // parse the input
 class Parser
 {
 private:
-    istream input;
-    ostream output;
+    ifstream input;
+    ofstream output;
+    string command;
+    // initialize the symbol_table
+    SymbolTable st;
+    // Initialize the codegen
+    CodeGen cg;
 
 public:
     /// @brief  Opens the input file/stream and gets ready to parse it.
-    /// @param input_file
-    Parser(string input_file);
+    /// @param input_file, output_file
+    Parser(string input_file, string output_file);
+
+    /// @brief parse the file and write to the output
+    int parse();
 
     /// @brief judge if there more commands in the input
     /// @return boolean
@@ -55,4 +71,17 @@ public:
     /// @brief return the jump field of the command only when commandType() == C_Command
     /// @return the jump field of the command
     string jump();
+
+    /// @brief convert a decimal number to 15 bit binary number
+    /// @param decimal the decimal number to be converted
+    /// @return
+    static string bin(const string& decimal);
+
+    /**
+     * return the label in the parenthesis
+     * @return the label string
+     */
+    string label();
 };
+
+#endif
