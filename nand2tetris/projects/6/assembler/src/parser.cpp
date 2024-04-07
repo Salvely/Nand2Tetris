@@ -21,7 +21,7 @@ int Parser::parse()
     int addr_count = 16;
 
     // first have a whole scan to determine the address of the labels
-    int line = 1;
+    int line = 0;
     while (has_more_commands())
     {
         advance();
