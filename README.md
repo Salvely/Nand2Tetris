@@ -12,8 +12,8 @@
 - [x] Project 4: Machine Language
 - [x] Reading 5
 - [x] Project 5: Computer Architecture
-- [ ] Reading 6
-- [ ] Project 6: Assembler
+- [x] Reading 6
+- [x] Project 6: Assembler
 - [ ] Reading 7
 - [ ] Project 7: VM I: Stack Arithmetic
 - [ ] Reading 8
