@@ -9,6 +9,10 @@ class CodeWriter {
 private:
     ofstream output;
     string filename;
+    int ret_count;
+    int if_count;
+    string function_name;
+
 public:
     /**
      * Opens the output file/ stream and gets ready to write into it
@@ -84,4 +88,55 @@ public:
      * @param local_num
      */
     void write_function(string function_name, int local_num);
+
+    /**
+     * decrease the SP pointer by 1
+     */
+    void SP_decrease();
+
+    /**
+     * increase the SP pointer by 1
+     */
+    void SP_increase();
+
+    /**
+     * dereference a pointer or assign a value to the pointer
+     * where pointer = (segment + index)
+     * write from D reg or write to D reg
+     */
+    void ref_deref_pt(bool deref = true, const string &segment = "SP", int index = 0);
+
+    /**
+     * assign the value of D register to a pointer(segment)
+     * @param pointer the pointer to be reassigned
+     * @param offset the offset to the pointer(segment)
+     */
+    void reassign_pt(const string &pointer = "SP", int offset = 0);
+
+    /**
+     * get the value of a pointer , write to D register
+     * @param pointer the pointer which we want to obtain its value
+     * @param offset the offset to the pointer(segment)
+     */
+    void obtain_pt(const string &pointer = "SP", int offset = 0);
+
+    /**
+     * push the value into address segment + index
+     * @param segment segment we want to push into
+     * @param index offset from the base address of the segment
+     */
+    void basic_push(string segment = "SP", int index = 0);
+
+    /**
+     * pop from address segment + index
+     * @param segment segment we want to pop from
+     * @param index offset from the base address of the segment
+     */
+    void basic_pop(string segment = "SP", int index = 0);
+
+    /**
+     * set register D as -1 or 0 according to the condition
+     * @param condition the condition to be judged, such as jt lt eq
+     */
+    void write_branch(string condition);
 };
