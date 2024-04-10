@@ -1,0 +1,6 @@
+"D:\Program_Files\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" E:\projects\Nand2Tetris\nand2tetris\projects\7\translator
+boost found
+-- Configuring done
+WARNING: Target "translator" requests linking to directory "D:/Program_Files/Mingw-w64/x86_64-8.1.0-release-posix-seh-rt_v6-rev0/mingw64/lib".  Targets may link only to libraries.  CMake is dropping the item.
+-- Generating done
+-- Build files have been written to: E:/projects/Nand2Tetris/nand2tetris/projects/7/translator/cmake-build-debug

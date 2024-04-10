@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/projects/Nand2Tetris/nand2tetris/projects/7/translator/src/test.cpp
+iostream
+-
+string
+-
+filesystem
+-
+
