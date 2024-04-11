@@ -136,7 +136,7 @@ void CodeWriter::write_branch(string condition) {
     output << "(branch_false" << if_count << ")" << endl;
     output << "D=0" << endl;
     output << "@end_branch" << if_count << endl;
-    output << "JMP" << endl;
+    output << "0;JMP" << endl;
     output << "(branch_true" << if_count << ")" << endl;
     output << "D=-1" << endl;
     output << "(end_branch" << if_count << ")" << endl;
@@ -159,7 +159,7 @@ void CodeWriter::write_arithmetic(string command) {
         if (command == "add") {
             output << "M=D+M" << endl;
         } else if (command == "sub") {
-            output << "M=D-M" << endl;
+            output << "M=M-D" << endl;
         } else if (command == "and") {
             output << "M=D&M" << endl;
         } else if (command == "or") {
@@ -253,7 +253,7 @@ void CodeWriter::write_goto(string label) {
      * JMP
      */
     output << "@" << function_name << "$" << label << endl;
-    output << "JMP" << endl;
+    output << "0;JMP" << endl;
 }
 
 void CodeWriter::write_if(string label) {
@@ -335,7 +335,7 @@ void CodeWriter::write_return() {
     ref_deref_pt(true, "LCL", -4);
     reassign_pt("LCL");
     output << "@temp" << endl;
-    output << "JMP" << endl;
+    output << "0;JMP" << endl;
 }
 
 void CodeWriter::write_function(string function_name, int local_num) {

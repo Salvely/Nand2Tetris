@@ -98,7 +98,7 @@
 
 ## 测试
 
-- [ ] SimpleAdd
+- [x] SimpleAdd
 - [ ] StackTest
 - [ ] BasicTest
 - [ ] PointerTest
