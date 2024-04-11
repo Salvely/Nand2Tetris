@@ -34,7 +34,7 @@ void CodeWriter::SP_increase() {
 }
 
 void CodeWriter::ref_deref_pt(bool deref, const string &segment, int index) {
-    if (segment != "SP" && segment != "constant" && index != 0) {
+    if ((segment != "SP" && segment != "constant" && index != 0) || (segment == "3") || (segment == "5")) {
         // set D = index
         output << "@" << abs(index) << endl;
         output << "D=A" << endl;
@@ -43,28 +43,28 @@ void CodeWriter::ref_deref_pt(bool deref, const string &segment, int index) {
     output << "@" << segment << endl;
     if (segment == "SP") {
         output << "A=M" << endl;
-    } else if(segment != "3" && segment != "5"){
+    } else if (segment != "3" && segment != "5") {
         if (index == 0) {
             output << "A=M" << endl;
         } else if (index < 0)
             output << "A=M-D" << endl;
         else
             output << "A=M+D" << endl;
-    }else {
+    } else {
         output << "A=D+A" << endl;
     }
     // D = *address
     if (deref)
         output << "D=M" << endl;
     else {
-        if(segment != "SP" && segment != "constant" && index != 0) {
-                output << "D=A" << endl;
-                output << "@R14" << endl;
-                output << "M=D" << endl;
-                output << "@R13" << endl;
-                output << "D=M" << endl;
-                output << "@R14" << endl;
-                output << "A=M" << endl;
+        if ((segment != "SP" && segment != "constant" && index != 0) || (segment == "3") || (segment == "5")) {
+            output << "D=A" << endl;
+            output << "@R14" << endl;
+            output << "M=D" << endl;
+            output << "@R13" << endl;
+            output << "D=M" << endl;
+            output << "@R14" << endl;
+            output << "A=M" << endl;
         }
         output << "M=D" << endl;
     }
@@ -124,7 +124,7 @@ void CodeWriter::basic_push(string segment, int index) {
          */
         ref_deref_pt(true, segment, index);
         // push D onto the stack
-        basic_push("SP",0);
+        basic_push("SP", 0);
     }
 }
 
@@ -139,12 +139,12 @@ void CodeWriter::basic_pop(string segment, int index) {
         ref_deref_pt(true);
     } else {
         // segment pop to D
-        basic_pop("SP",0);
+        basic_pop("SP", 0);
         /**
          * store D in R13
          */
-         output << "@R13" << endl;
-         output << "M=D" << endl;
+        output << "@R13" << endl;
+        output << "M=D" << endl;
         /**
          * *(segment+index) = D
          */

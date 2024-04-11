@@ -100,7 +100,7 @@
 
 - [x] SimpleAdd
 - [x] StackTest
-- [ ] BasicTest
+- [x] BasicTest
 - [ ] PointerTest
 - [ ] StaticTest
 - [ ] BasicLoop
