@@ -9,9 +9,10 @@ using std::endl;
 using std::cerr;
 
 CodeWriter::CodeWriter(string output_file) {
-    output.open(output_file);
+    output.open(output_file, std::ios_base::app);
     ret_count = 0;
     if_count = 0;
+    function_name = "main";
 }
 
 CodeWriter::~CodeWriter() {
@@ -37,7 +38,7 @@ void CodeWriter::ref_deref_pt(bool deref, const string &segment, int index) {
     if (segment == "SP") {
         output << "A=M" << endl;
     } else {
-        if(index < 0)
+        if (index < 0)
             output << "A=M" << index << endl;
         else
             output << "A=M+" << index << endl;
@@ -64,7 +65,7 @@ void CodeWriter::obtain_pt(const string &pointer, int offset) {
 void CodeWriter::reassign_pt(const string &pointer, int offset) {
     output << "@" << pointer << endl;
     if (offset == 0) {
-        output << "D=M" << endl;
+        output << "M=D" << endl;
     } else {
         if (offset > 0) {
             output << "M=D+" << offset << endl;
@@ -75,18 +76,22 @@ void CodeWriter::reassign_pt(const string &pointer, int offset) {
 }
 
 void CodeWriter::basic_push(string segment, int index) {
-    if (segment == "SP") {
+    if (segment == "SP" || segment == "constant") {
         // basic push D
         /**
          * *SP = D
          * SP = SP + 1
          */
+        if (segment == "constant") {
+            output << "@" << index << endl;
+            output << "D=A" << endl;
+        }
         ref_deref_pt(false);
         SP_increase();
     } else {
         // segment push from D
         if (segment == "static") {
-            segment = filename + "." + segment;
+            segment = filename + "." + std::to_string(index);
         }
         /**
          * *(segment + index) = D
@@ -107,7 +112,7 @@ void CodeWriter::basic_pop(string segment, int index) {
     } else {
         // segment pop to D
         if (segment == "static") {
-            segment = filename + "." + segment;
+            segment = filename + "." + std::to_string(index);
         }
         /**
          * D=*(segment+index)
@@ -117,7 +122,7 @@ void CodeWriter::basic_pop(string segment, int index) {
 }
 
 void CodeWriter::write_branch(string condition) {
-    output << "@branch-true" << if_count << endl;
+    output << "@branch_true" << if_count << endl;
     if (condition == "eq") {
         output << "D;JEQ" << endl;
     } else if (condition == "gt") {
@@ -128,13 +133,13 @@ void CodeWriter::write_branch(string condition) {
         std::cerr << "Illegal command: " << condition << endl;
         exit(1);
     }
-    output << "(branch-false" << if_count << ")" << endl;
+    output << "(branch_false" << if_count << ")" << endl;
     output << "D=0" << endl;
-    output << "@end-branch" << if_count << endl;
+    output << "@end_branch" << if_count << endl;
     output << "JMP" << endl;
-    output << "(branch-true" << if_count << ")" << endl;
+    output << "(branch_true" << if_count << ")" << endl;
     output << "D=-1" << endl;
-    output << "(end-branch" << if_count << ")" << endl;
+    output << "(end_branch" << if_count << ")" << endl;
     if_count += 1;
 }
 
@@ -314,20 +319,20 @@ void CodeWriter::write_return() {
         LCL = *(FRAME-4) // Restore LCL of the caller
         goto RET // Goto return-address (in the caller’s code)
      */
-    ref_deref_pt(true,"LCL",-5);
+    ref_deref_pt(true, "LCL", -5);
     output << "@temp" << endl;
     output << "M=D" << endl;
     basic_pop();
-    ref_deref_pt(false,"ARG");
-    obtain_pt("ARG",1);
+    ref_deref_pt(false, "ARG");
+    obtain_pt("ARG", 1);
     reassign_pt("SP");
-    ref_deref_pt(true,"LCL",-1);
+    ref_deref_pt(true, "LCL", -1);
     reassign_pt("THAT");
-    ref_deref_pt(true,"LCL",-2);
+    ref_deref_pt(true, "LCL", -2);
     reassign_pt("THIS");
-    ref_deref_pt(true,"LCL",-3);
+    ref_deref_pt(true, "LCL", -3);
     reassign_pt("ARG");
-    ref_deref_pt(true,"LCL",-4);
+    ref_deref_pt(true, "LCL", -4);
     reassign_pt("LCL");
     output << "@temp" << endl;
     output << "JMP" << endl;

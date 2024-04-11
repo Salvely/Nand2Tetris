@@ -27,6 +27,9 @@ void Parser::compile() {
             cw.write_arithmetic(command);
         } else if (type == C_PUSH || type == C_POP) {
             string segment = arg1();
+            if(segment_symbol.find(segment) != segment_symbol.end()) {
+                segment = segment_symbol[segment];
+            }
             int index = std::stoi(arg2());
             cw.write_push_pop(type, segment, index);
         } else if(type == C_LABEL){

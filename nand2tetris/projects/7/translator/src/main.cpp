@@ -7,26 +7,29 @@ using std::string;
 using namespace boost::filesystem;
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        std::cerr << "Usage: ./translator [input file/directory] [output.asm]" << std::endl;
+    if (argc != 2) {
+        std::cerr << "Usage: ./translator [input file/directory]" << std::endl;
         exit(1);
     }
     // judge if the input is a directory
     if (string(argv[1]).find(".vm") == string::npos) {
         path p{argv[1]};
+        string output = p.string() + "/" + p.filename().string() + ".asm";
         // for each file in the directory, parse them and write to the output file
         for (auto &dir_Entry: boost::filesystem::recursive_directory_iterator(p)) {
             if (!dir_Entry.is_directory() && dir_Entry.path().filename().string().find(".vm") != string::npos) {
                 std::cout << "log: Parsing " << dir_Entry.path().string() << std::endl;
                 string filename = dir_Entry.path().string();
-                Parser par(filename, argv[2]);
+                Parser par(filename, output);
                 par.compile();
             }
         }
     } else {
         // parse the .vm file and write to the output file
         std::cout << "log: Parsing " << argv[1] << std::endl;
-        Parser par(argv[1], argv[2]);
+        path p{argv[1]};
+        string output = p.string() + "/" + p.root_directory().string() + ".asm";
+        Parser par(argv[1], output);
         par.compile();
     }
     return 0;
