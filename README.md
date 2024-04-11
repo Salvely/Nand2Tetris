@@ -2,6 +2,8 @@
 
 ## Schedule
 
+## Pre Part: Computer Organization
+
 - [x] Reading 1
 - [x] Project 1: Boolean Logic
 - [x] Reading 2
@@ -15,14 +17,14 @@
 
 ## Part I
 
-- [ ] Reading 6
-- [ ] Project 6: Assembler: `.asm`汇编语言 -> 二进制
+- [x] Reading 6
+- [x] Project 6: Assembler: `.asm`汇编语言 -> 二进制
 
 ## Part II
 
-- [ ] Reading 7
+- [x] Reading 7
 - [ ] Project 7: VM I: Stack Arithmetic: 中间代码（VM，stack 语言） -> 汇编，基础语法实现
-- [ ] Reading 8
+- [x] Reading 8
 - [ ] Project 8: VM II: Program Control：中间代码（VM，stack 语言） -> 汇编，控制逻辑实现
 
 ## Part III
