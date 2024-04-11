@@ -103,7 +103,7 @@
 - [x] BasicTest
 - [x] PointerTest
 - [x] StaticTest
-- [ ] BasicLoop
+- [x] BasicLoop
 - [ ] FibonacciSeries
 - [ ] FibonacciElement
 - [ ] NestedCall

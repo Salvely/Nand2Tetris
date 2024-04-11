@@ -298,8 +298,7 @@ void CodeWriter::write_if(string label) {
      */
     basic_pop();
     output << "@" << function_name << "$" << label << endl;
-    output << "JNE" << endl;
-    exit(1);
+    output << "D;JNE" << endl;
 }
 
 void CodeWriter::write_call(string function_name, int arg_num) {
