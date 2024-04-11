@@ -101,8 +101,8 @@
 - [x] SimpleAdd
 - [x] StackTest
 - [x] BasicTest
-- [ ] PointerTest
-- [ ] StaticTest
+- [x] PointerTest
+- [x] StaticTest
 - [ ] BasicLoop
 - [ ] FibonacciSeries
 - [ ] FibonacciElement
