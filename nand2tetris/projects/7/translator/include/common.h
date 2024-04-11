@@ -22,8 +22,8 @@ enum c_type {
     ILLEGAL
 };
 
-std::vector<string> arith_command = {"add", "sub", "neg", "eq", "gt", "lt", "and", "or", "not"};
-std::vector<string> binary_command = {"add", "sub", "and", "or"};
-std::vector<string> uary_command = {"neg", "not"};
-std::vector<string> condition_command = {"eq", "gt", "lt"};
+static std::vector<string> arith_command = {"add", "sub", "neg", "eq", "gt", "lt", "and", "or", "not"};
+static std::vector<string> binary_command = {"add", "sub", "and", "or"};
+static std::vector<string> uary_command = {"neg", "not"};
+static std::vector<string> condition_command = {"eq", "gt", "lt"};
 #endif //TRANSLATOR_COMMON_H

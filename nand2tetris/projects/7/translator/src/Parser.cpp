@@ -73,13 +73,13 @@ void Parser::advance() {
 
 string Parser::arg1() {
     std::vector<string> vec;
-    boost::split(vec, command, " ");
+    boost::split(vec, command, boost::is_any_of(" "));
     return vec[1];
 }
 
 string Parser::arg2() {
     std::vector<string> vec;
-    boost::split(vec, command, " ");
+    boost::split(vec, command, boost::is_any_of(" "));
     return vec[2];
 }
 

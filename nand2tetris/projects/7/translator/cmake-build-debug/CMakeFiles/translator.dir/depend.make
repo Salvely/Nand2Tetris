@@ -15,5 +15,3 @@ CMakeFiles/translator.dir/src/main.cpp.obj: \
  ../include/Parser.hh \
  ../include/common.h \
  ../src/main.cpp
-CMakeFiles/translator.dir/src/test.cpp.obj: \
- ../src/test.cpp

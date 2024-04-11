@@ -14,6 +14,10 @@ CodeWriter::CodeWriter(string output_file) {
     if_count = 0;
 }
 
+CodeWriter::~CodeWriter() {
+    close();
+}
+
 void CodeWriter::set_file_name(string filename) {
     this->filename = filename;
 }
@@ -33,7 +37,10 @@ void CodeWriter::ref_deref_pt(bool deref, const string &segment, int index) {
     if (segment == "SP") {
         output << "A=M" << endl;
     } else {
-        output << "A=M+" << index << endl;
+        if(index < 0)
+            output << "A=M" << index << endl;
+        else
+            output << "A=M+" << index << endl;
     }
     if (deref)
         output << "D=M" << endl;
@@ -292,6 +299,7 @@ void CodeWriter::write_call(string function_name, int arg_num) {
     reassign_pt("LCL");
     write_goto(function_name);
     output << "(" << return_addr << ")" << endl;
+    ret_count += 1;
 }
 
 void CodeWriter::write_return() {

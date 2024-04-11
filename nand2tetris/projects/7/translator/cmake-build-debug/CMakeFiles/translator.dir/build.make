@@ -120,6 +120,8 @@ translator.exe: CMakeFiles/translator.dir/src/Parser.cpp.obj
 translator.exe: CMakeFiles/translator.dir/src/CodeWriter.cpp.obj
 translator.exe: CMakeFiles/translator.dir/src/main.cpp.obj
 translator.exe: CMakeFiles/translator.dir/build.make
+translator.exe: D:/Program_Files/Mingw-w64/x86_64-8.1.0-release-posix-seh-rt_v6-rev0/mingw64/lib/libboost_filesystem-mgw8-mt-d-x64-1_84.a
+translator.exe: D:/Program_Files/Mingw-w64/x86_64-8.1.0-release-posix-seh-rt_v6-rev0/mingw64/lib/libboost_atomic-mgw8-mt-d-x64-1_84.a
 translator.exe: CMakeFiles/translator.dir/linklibs.rsp
 translator.exe: CMakeFiles/translator.dir/objects1.rsp
 translator.exe: CMakeFiles/translator.dir/link.txt

@@ -1,3 +1,6 @@
+#ifndef __TRANSLATOR_PARSER__
+#define __TRANSLATOR_PARSER__
+
 #include <string>
 #include <fstream>
 #include <vector>
@@ -61,3 +64,5 @@ public:
      */
     string arg2();
 };
+
+#endif

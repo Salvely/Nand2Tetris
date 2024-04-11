@@ -1,3 +1,6 @@
+#ifndef __CODEWRITER_H__
+#define __CODEWRITER_H__
+
 #include <string>
 #include <fstream>
 #include "common.h"
@@ -19,6 +22,11 @@ public:
      * @param output_file
      */
     CodeWriter(string output_file);
+
+    /**
+     * CodeWriter Destructor
+     */
+    ~CodeWriter();
 
     /**
      * Informs the code writer that the translation of a new VM file is started.
@@ -140,3 +148,5 @@ public:
      */
     void write_branch(string condition);
 };
+
+#endif
