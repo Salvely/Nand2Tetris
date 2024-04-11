@@ -34,30 +34,56 @@ void CodeWriter::SP_increase() {
 }
 
 void CodeWriter::ref_deref_pt(bool deref, const string &segment, int index) {
+    if (segment != "SP" && segment != "constant" && index != 0) {
+        // set D = index
+        output << "@" << abs(index) << endl;
+        output << "D=A" << endl;
+    }
+    // address = M+D
     output << "@" << segment << endl;
     if (segment == "SP") {
         output << "A=M" << endl;
-    } else {
-        if (index < 0)
-            output << "A=M" << index << endl;
+    } else if(segment != "3" && segment != "5"){
+        if (index == 0) {
+            output << "A=M" << endl;
+        } else if (index < 0)
+            output << "A=M-D" << endl;
         else
-            output << "A=M+" << index << endl;
+            output << "A=M+D" << endl;
+    }else {
+        output << "A=D+A" << endl;
     }
+    // D = *address
     if (deref)
         output << "D=M" << endl;
-    else
+    else {
+        if(segment != "SP" && segment != "constant" && index != 0) {
+                output << "D=A" << endl;
+                output << "@R14" << endl;
+                output << "M=D" << endl;
+                output << "@R13" << endl;
+                output << "D=M" << endl;
+                output << "@R14" << endl;
+                output << "A=M" << endl;
+        }
         output << "M=D" << endl;
+    }
 }
 
 void CodeWriter::obtain_pt(const string &pointer, int offset) {
+    if (pointer != "SP" && pointer != "constant" && offset != 0) {
+        // set D = index
+        output << "@" << abs(offset) << endl;
+        output << "D=A" << endl;
+    }
     output << "@" << pointer << endl;
     if (offset == 0) {
         output << "D=M" << endl;
     } else {
         if (offset > 0) {
-            output << "D=M+" << offset << endl;
+            output << "D=M+D" << endl;
         } else {
-            output << "D=M" << offset << endl;
+            output << "D=M-D" << endl;
         }
     }
 }
@@ -94,9 +120,11 @@ void CodeWriter::basic_push(string segment, int index) {
             segment = filename + "." + std::to_string(index);
         }
         /**
-         * *(segment + index) = D
+         * D = *(segment + index)
          */
-        ref_deref_pt(false, segment, index);
+        ref_deref_pt(true, segment, index);
+        // push D onto the stack
+        basic_push("SP",0);
     }
 }
 
@@ -111,13 +139,19 @@ void CodeWriter::basic_pop(string segment, int index) {
         ref_deref_pt(true);
     } else {
         // segment pop to D
+        basic_pop("SP",0);
+        /**
+         * store D in R13
+         */
+         output << "@R13" << endl;
+         output << "M=D" << endl;
+        /**
+         * *(segment+index) = D
+         */
         if (segment == "static") {
             segment = filename + "." + std::to_string(index);
         }
-        /**
-         * D=*(segment+index)
-         */
-        ref_deref_pt(true, segment, index);
+        ref_deref_pt(false, segment, index);
     }
 }
 

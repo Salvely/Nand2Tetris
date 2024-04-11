@@ -99,7 +99,7 @@
 ## 测试
 
 - [x] SimpleAdd
-- [ ] StackTest
+- [x] StackTest
 - [ ] BasicTest
 - [ ] PointerTest
 - [ ] StaticTest
@@ -108,4 +108,4 @@
 - [ ] FibonacciElement
 - [ ] NestedCall
 - [ ] SimpleFunction
-- [ ] StaticTest
+- [ ] StaticsTest
