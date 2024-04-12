@@ -104,7 +104,7 @@
 - [x] PointerTest
 - [x] StaticTest
 - [x] BasicLoop
-- [ ] FibonacciSeries
+- [x] FibonacciSeries
 - [ ] FibonacciElement
 - [ ] NestedCall
 - [ ] SimpleFunction
