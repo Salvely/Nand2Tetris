@@ -71,6 +71,22 @@ void CodeWriter::ref_deref_pt(bool deref, const string &segment, int index) {
 }
 
 void CodeWriter::obtain_pt(const string &pointer, int offset) {
+    /**
+     * Get the address of a pointer and assign it to D
+     * D = pointer + offset
+     *
+     * asm:
+     * @offset
+     * D=A
+     * @pointer
+     * if(offset == 0)
+     *  A=M
+     * else if(offset < 0)
+     *  A=M-D
+     * else
+     *  A=M+D
+     * D=A
+     */
     if (pointer != "SP" && pointer != "constant" && offset != 0) {
         // set D = index
         output << "@" << abs(offset) << endl;
@@ -78,27 +94,32 @@ void CodeWriter::obtain_pt(const string &pointer, int offset) {
     }
     output << "@" << pointer << endl;
     if (offset == 0) {
-        output << "D=M" << endl;
+        output << "A=M" << endl;
     } else {
         if (offset > 0) {
-            output << "D=M+D" << endl;
+            output << "A=M+D" << endl;
         } else {
-            output << "D=M-D" << endl;
+            output << "A=M-D" << endl;
         }
     }
+    output << "D=A" << endl;
 }
 
 void CodeWriter::reassign_pt(const string &pointer, int offset) {
+    /**
+     * pointer = D
+     */
     output << "@" << pointer << endl;
     if (offset == 0) {
         output << "M=D" << endl;
-    } else {
-        if (offset > 0) {
-            output << "M=D+" << offset << endl;
-        } else {
-            output << "M=D" << offset << endl;
-        }
     }
+//    else {
+//        if (offset > 0) {
+//            output << "M=D+" << offset << endl;
+//        } else {
+//            output << "M=D" << offset << endl;
+//        }
+//    }
 }
 
 void CodeWriter::basic_push(string segment, int index) {
@@ -302,6 +323,7 @@ void CodeWriter::write_if(string label) {
 }
 
 void CodeWriter::write_call(string function_name, int arg_num) {
+    // TODO: fix this
     /**
      * return_address的label是function_name$ret.i),i为第i个return编号
      * push return-address // (Using the label declared below)
@@ -353,7 +375,7 @@ void CodeWriter::write_return() {
         goto RET // Goto return-address (in the caller’s code)
      */
     ref_deref_pt(true, "LCL", -5);
-    output << "@temp" << endl;
+    output << "@R13" << endl;
     output << "M=D" << endl;
     basic_pop();
     ref_deref_pt(false, "ARG");
@@ -367,7 +389,8 @@ void CodeWriter::write_return() {
     reassign_pt("ARG");
     ref_deref_pt(true, "LCL", -4);
     reassign_pt("LCL");
-    output << "@temp" << endl;
+    output << "@R13" << endl;
+    output << "A=M" << endl;
     output << "0;JMP" << endl;
 }
 

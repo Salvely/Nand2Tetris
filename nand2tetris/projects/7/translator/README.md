@@ -107,5 +107,5 @@
 - [x] FibonacciSeries
 - [ ] FibonacciElement
 - [ ] NestedCall
-- [ ] SimpleFunction
+- [x] SimpleFunction
 - [ ] StaticsTest
