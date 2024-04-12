@@ -12,7 +12,8 @@ CodeWriter::CodeWriter(string output_file) {
     output.open(output_file, std::ios_base::app);
     ret_count = 0;
     if_count = 0;
-    function_name = "main";
+    function_name = "null";
+    write_init();
 }
 
 CodeWriter::~CodeWriter() {
@@ -95,12 +96,10 @@ void CodeWriter::obtain_pt(const string &pointer, int offset) {
     output << "@" << pointer << endl;
     if (offset == 0) {
         output << "A=M" << endl;
+    } else if (offset > 0) {
+        output << "A=M+D" << endl;
     } else {
-        if (offset > 0) {
-            output << "A=M+D" << endl;
-        } else {
-            output << "A=M-D" << endl;
-        }
+        output << "A=M-D" << endl;
     }
     output << "D=A" << endl;
 }
@@ -323,7 +322,6 @@ void CodeWriter::write_if(string label) {
 }
 
 void CodeWriter::write_call(string function_name, int arg_num) {
-    // TODO: fix this
     /**
      * return_address的label是function_name$ret.i),i为第i个return编号
      * push return-address // (Using the label declared below)
@@ -337,27 +335,28 @@ void CodeWriter::write_call(string function_name, int arg_num) {
         (return-address) // Declare a label for the return-address
      */
     // push return address
-    string return_addr = "@" + function_name + "$ret." + std::to_string(ret_count);
-    reassign_pt(return_addr);
+    string return_addr = function_name + "$ret." + std::to_string(ret_count);
+    obtain_pt(return_addr);
     basic_push();
     // push LCL
-    reassign_pt("LCL");
+    obtain_pt("LCL");
     basic_push();
     // push ARG
-    reassign_pt("ARG");
+    obtain_pt("ARG");
     basic_push();
     // push THIS
-    reassign_pt("THIS");
+    obtain_pt("THIS");
     basic_push();
     // push that
-    reassign_pt("THAT");
+    obtain_pt("THAT");
     basic_push();
     int offset = -(arg_num + 5);
     obtain_pt("SP", offset);
     reassign_pt("ARG");
     obtain_pt();
     reassign_pt("LCL");
-    write_goto(function_name);
+    output << "@" << function_name << endl;
+    output << "0;JMP" << endl;
     output << "(" << return_addr << ")" << endl;
     ret_count += 1;
 }

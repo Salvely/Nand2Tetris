@@ -53,7 +53,7 @@ void Parser::compile() {
             // format: call f [arg_num]
             string function_name = arg1();
             int local_num = std::stoi(arg2());
-            cw.write_function(function_name, local_num);
+            cw.write_call(function_name, local_num);
         } else if (type == C_RETURN) {
             // format: return
             cw.write_return();
