@@ -81,27 +81,38 @@ void CodeWriter::obtain_pt(const string &pointer, int offset) {
      * D=A
      * @pointer
      * if(offset == 0)
-     *  A=M
+     *  D=A
      * else if(offset < 0)
-     *  A=M-D
+     *  D=A-D
      * else
-     *  A=M+D
-     * D=A
+     *  D=D+A
      */
-    if (pointer != "SP" && pointer != "constant" && offset != 0) {
+    if ((pointer != "SP" && pointer != "constant" && offset != 0) || (pointer == "SP" && offset != 0)) {
         // set D = index
         output << "@" << abs(offset) << endl;
         output << "D=A" << endl;
     }
     output << "@" << pointer << endl;
-    if (offset == 0) {
-        output << "A=M" << endl;
-    } else if (offset > 0) {
-        output << "A=M+D" << endl;
-    } else {
-        output << "A=M-D" << endl;
+    if(pointer == "ARG" || pointer == "LCL"|| pointer == "THIS"|| pointer == "THAT"|| pointer == "SP") {
+        if(offset == 0) {
+            output << "D=M" << endl;
+        }
+        else if(offset > 0) {
+            output << "D=D+M" << endl;
+        }
+        else {
+            output << "D=M-D" << endl;
+        }
     }
-    output << "D=A" << endl;
+    else {
+        if (offset == 0) {
+            output << "D=A" << endl;
+        } else if (offset > 0) {
+            output << "D=D+A" << endl;
+        } else {
+            output << "D=A-D" << endl;
+        }
+    }
 }
 
 void CodeWriter::reassign_pt(const string &pointer, int offset) {
@@ -400,8 +411,10 @@ void CodeWriter::write_function(string function_name, int local_num) {
      */
     this->function_name = function_name;
     output << "(" << function_name << ")" << endl;
-    output << "@0" << endl;
-    output << "D=A" << endl;
+    if(local_num != 0) {
+        output << "@0" << endl;
+        output << "D=A" << endl;
+    }
     for (int i = 0; i < local_num; i++) {
         basic_push();
     }
