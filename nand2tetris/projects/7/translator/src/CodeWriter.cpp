@@ -11,10 +11,11 @@ using std::cout;
 
 CodeWriter::CodeWriter(string output_file) {
     output.open(output_file, std::ios_base::app);
-    ret_count = 0;
-    if_count = 0;
     function_name = "null";
-    write_init();
+    if(file_count == 0) {
+        write_init();
+    }
+    file_count += 1;
 }
 
 CodeWriter::~CodeWriter() {

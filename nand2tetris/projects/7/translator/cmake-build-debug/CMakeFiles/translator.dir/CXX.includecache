@@ -14,6 +14,18 @@ fstream
 common.h
 ../include/common.h
 
+../include/Parser.hh
+string
+-
+fstream
+-
+vector
+-
+CodeWriter.hh
+../include/CodeWriter.hh
+common.h
+../include/common.h
+
 ../include/common.h
 vector
 -
@@ -22,15 +34,15 @@ string
 unordered_map
 -
 
-E:/projects/Nand2Tetris/nand2tetris/projects/7/translator/src/CodeWriter.cpp
-CodeWriter.hh
-E:/projects/Nand2Tetris/nand2tetris/projects/7/translator/src/CodeWriter.hh
-common.h
-E:/projects/Nand2Tetris/nand2tetris/projects/7/translator/src/common.h
-sstream
+E:/projects/Nand2Tetris/nand2tetris/projects/7/translator/src/Parser.cpp
+Parser.hh
+E:/projects/Nand2Tetris/nand2tetris/projects/7/translator/src/Parser.hh
+string
+-
+boost/algorithm/string.hpp
+-
+vector
 -
 iostream
--
-algorithm
 -
 

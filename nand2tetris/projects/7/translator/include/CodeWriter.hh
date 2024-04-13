@@ -12,8 +12,8 @@ class CodeWriter {
 private:
     ofstream output;
     string filename;
-    int ret_count;
-    int if_count;
+//    int ret_count;
+//    int if_count;
     string function_name;
 
 public:

@@ -99,10 +99,10 @@ c_type Parser::command_type() {
         return C_ARITHMETIC;
     } else if (command.find("label") != string::npos) {
         return C_LABEL;
-    } else if (command.find("goto") != string::npos) {
-        return C_GOTO;
     } else if (command.find("if-goto") != string::npos) {
         return C_IF;
+    } else if (command.find("goto") != string::npos) {
+        return C_GOTO;
     } else if (command.find("call") != string::npos) {
         return C_CALL;
     } else if (command.find("function") != string::npos) {

@@ -27,6 +27,11 @@ static std::vector<string> arith_command = {"add", "sub", "neg", "eq", "gt", "lt
 static std::vector<string> binary_command = {"add", "sub", "and", "or"};
 static std::vector<string> uary_command = {"neg", "not"};
 static std::vector<string> condition_command = {"eq", "gt", "lt"};
+
+static int ret_count = 0;
+static int if_count = 0;
+static int file_count = 0;
+
 /**
  * argument -> ARG(DONE)
  * local -> LCL(DONE)
