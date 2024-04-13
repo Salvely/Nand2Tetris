@@ -148,11 +148,15 @@ void CodeWriter::basic_push(string segment, int index) {
         if (segment == "static") {
 //            std::cout << "pop " << segment << " " << index << filename << std::endl;
             segment = filename + "." + std::to_string(index);
+            output << "@" << segment << endl;
+            output << "D=M" << endl;
         }
-        /**
-         * D = *(segment + index)
-         */
-        ref_deref_pt(true, segment, index);
+        else {
+            /**
+             * D = *(segment + index)
+             */
+            ref_deref_pt(true, segment, index);
+        }
         // push D onto the stack
         basic_push("SP", 0);
     }
@@ -179,11 +183,13 @@ void CodeWriter::basic_pop(string segment, int index) {
          * *(segment+index) = D
          */
         if (segment == "static") {
-//            std::cout << "pop " << segment << " " << index << filename << std::endl;
             segment = filename + "." + std::to_string(index);
-//            cout << segment << endl;
+            output << "@" << segment << endl;
+            output << "M=D" << endl;
         }
-        ref_deref_pt(false, segment, index);
+        else {
+            ref_deref_pt(false, segment, index);
+        }
     }
 }
 

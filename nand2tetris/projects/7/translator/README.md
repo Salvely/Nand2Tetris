@@ -108,4 +108,4 @@
 - [x] SimpleFunction
 - [x] NestedCall
 - [ ] FibonacciElement
-- [ ] StaticsTest
+- [x] StaticsTest
