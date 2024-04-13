@@ -7,6 +7,7 @@
 using std::ostringstream;
 using std::endl;
 using std::cerr;
+using std::cout;
 
 CodeWriter::CodeWriter(string output_file) {
     output.open(output_file, std::ios_base::app);
@@ -93,18 +94,15 @@ void CodeWriter::obtain_pt(const string &pointer, int offset) {
         output << "D=A" << endl;
     }
     output << "@" << pointer << endl;
-    if(pointer == "ARG" || pointer == "LCL"|| pointer == "THIS"|| pointer == "THAT"|| pointer == "SP") {
-        if(offset == 0) {
+    if (pointer == "ARG" || pointer == "LCL" || pointer == "THIS" || pointer == "THAT" || pointer == "SP") {
+        if (offset == 0) {
             output << "D=M" << endl;
-        }
-        else if(offset > 0) {
+        } else if (offset > 0) {
             output << "D=D+M" << endl;
-        }
-        else {
+        } else {
             output << "D=M-D" << endl;
         }
-    }
-    else {
+    } else {
         if (offset == 0) {
             output << "D=A" << endl;
         } else if (offset > 0) {
@@ -148,6 +146,7 @@ void CodeWriter::basic_push(string segment, int index) {
     } else {
         // segment push from D
         if (segment == "static") {
+//            std::cout << "pop " << segment << " " << index << filename << std::endl;
             segment = filename + "." + std::to_string(index);
         }
         /**
@@ -180,7 +179,9 @@ void CodeWriter::basic_pop(string segment, int index) {
          * *(segment+index) = D
          */
         if (segment == "static") {
+//            std::cout << "pop " << segment << " " << index << filename << std::endl;
             segment = filename + "." + std::to_string(index);
+//            cout << segment << endl;
         }
         ref_deref_pt(false, segment, index);
     }
@@ -411,7 +412,7 @@ void CodeWriter::write_function(string function_name, int local_num) {
      */
     this->function_name = function_name;
     output << "(" << function_name << ")" << endl;
-    if(local_num != 0) {
+    if (local_num != 0) {
         output << "@0" << endl;
         output << "D=A" << endl;
     }

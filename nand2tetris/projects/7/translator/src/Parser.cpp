@@ -12,9 +12,9 @@ Parser::Parser(string input_file, string output_file) : cw(output_file) {
     input.open(input_file);
 
     std::vector<string> vec;
-    boost::split(vec, input_file, boost::is_any_of("."));
-    string filename = vec[0];
-    cw.set_file_name(filename);
+    boost::split(vec, input_file, boost::is_any_of("\\"));
+    boost::split(vec,vec[1],boost::is_any_of("."));
+    cw.set_file_name(vec[0]);
 }
 
 void Parser::compile() {

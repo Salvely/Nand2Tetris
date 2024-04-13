@@ -106,6 +106,6 @@
 - [x] BasicLoop
 - [x] FibonacciSeries
 - [x] SimpleFunction
-- [ ] NestedCall
+- [x] NestedCall
 - [ ] FibonacciElement
 - [ ] StaticsTest
