@@ -98,7 +98,7 @@ D=A
 @LCL
 A=M-D
 D=M
-@temp
+@R13
 M=D
 @SP
 M=M-1
@@ -111,7 +111,8 @@ M=D
 @1
 D=A
 @ARG
-D=M+D
+A=M+D
+D=A
 @SP
 M=D
 @1
@@ -142,5 +143,6 @@ A=M-D
 D=M
 @LCL
 M=D
-@temp
+@R13
+A=M
 0;JMP

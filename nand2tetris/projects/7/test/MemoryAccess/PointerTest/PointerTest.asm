@@ -12,8 +12,17 @@ A=M
 D=M
 @R13
 M=D
+@0
+D=A
 @3
 A=D+A
+D=A
+@R14
+M=D
+@R13
+D=M
+@R14
+A=M
 M=D
 @3040
 D=A
@@ -93,6 +102,8 @@ D=M
 @R14
 A=M
 M=D
+@0
+D=A
 @3
 A=D+A
 D=M

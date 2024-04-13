@@ -1,0 +1,15 @@
+call sys.init
+
+(Main.fibonacci)
+push arg 0
+push con 2
+lt
+@Main.fibonacci$N_LT_2
+0;JMP
+@Main.fibonacci$N_GE_2
+0;JMP
+
+N_LT_2 label
+N_GE_2 label
+
+Sys.init

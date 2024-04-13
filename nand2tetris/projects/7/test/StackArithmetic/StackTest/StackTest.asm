@@ -21,7 +21,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -34,7 +34,7 @@ D;JEQ
 (branch_false0)
 D=0
 @end_branch0
-JMP
+0;JMP
 (branch_true0)
 D=-1
 (end_branch0)
@@ -66,7 +66,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -79,7 +79,7 @@ D;JEQ
 (branch_false1)
 D=0
 @end_branch1
-JMP
+0;JMP
 (branch_true1)
 D=-1
 (end_branch1)
@@ -111,7 +111,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -124,7 +124,7 @@ D;JEQ
 (branch_false2)
 D=0
 @end_branch2
-JMP
+0;JMP
 (branch_true2)
 D=-1
 (end_branch2)
@@ -156,7 +156,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -169,7 +169,7 @@ D;JLT
 (branch_false3)
 D=0
 @end_branch3
-JMP
+0;JMP
 (branch_true3)
 D=-1
 (end_branch3)
@@ -201,7 +201,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -214,7 +214,7 @@ D;JLT
 (branch_false4)
 D=0
 @end_branch4
-JMP
+0;JMP
 (branch_true4)
 D=-1
 (end_branch4)
@@ -246,7 +246,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -259,7 +259,7 @@ D;JLT
 (branch_false5)
 D=0
 @end_branch5
-JMP
+0;JMP
 (branch_true5)
 D=-1
 (end_branch5)
@@ -291,7 +291,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -304,7 +304,7 @@ D;JGT
 (branch_false6)
 D=0
 @end_branch6
-JMP
+0;JMP
 (branch_true6)
 D=-1
 (end_branch6)
@@ -336,7 +336,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -349,7 +349,7 @@ D;JGT
 (branch_false7)
 D=0
 @end_branch7
-JMP
+0;JMP
 (branch_true7)
 D=-1
 (end_branch7)
@@ -381,7 +381,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP
@@ -394,7 +394,7 @@ D;JGT
 (branch_false8)
 D=0
 @end_branch8
-JMP
+0;JMP
 (branch_true8)
 D=-1
 (end_branch8)
@@ -452,7 +452,7 @@ D=M
 M=M-1
 @SP
 A=M
-M=D-M
+M=M-D
 @SP
 M=M+1
 @SP

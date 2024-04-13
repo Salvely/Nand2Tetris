@@ -23,9 +23,9 @@
 ## Part II
 
 - [x] Reading 7
-- [ ] Project 7: VM I: Stack Arithmetic: 中间代码（VM，stack 语言） -> 汇编，基础语法实现
+- [x] Project 7: VM I: Stack Arithmetic: 中间代码（VM，stack 语言） -> 汇编，基础语法实现
 - [x] Reading 8
-- [ ] Project 8: VM II: Program Control：中间代码（VM，stack 语言） -> 汇编，控制逻辑实现
+- [x] Project 8: VM II: Program Control：中间代码（VM，stack 语言） -> 汇编，控制逻辑实现
 
 ## Part III
 
