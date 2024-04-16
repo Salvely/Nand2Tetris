@@ -1,22 +1,22 @@
 # Project 10-11 说明
 
 - [Project 10-11 说明](#project-10-11-说明)
-  - [Jack 语言](#jack-语言)
-    - [Jack 语言简介](#jack-语言简介)
-    - [Jack 语言规范](#jack-语言规范)
-      - [语言相关元素](#语言相关元素)
-      - [程序结构](#程序结构)
-      - [变量](#变量)
-      - [语句](#语句)
-      - [表达式](#表达式)
-      - [函数调用](#函数调用)
-      - [构造函数和析构函数](#构造函数和析构函数)
-      - [Jack 标准库](#jack-标准库)
-  - [语法分析](#语法分析)
-  - [输入](#输入)
-  - [输出](#输出)
-    - [终结符](#终结符)
-    - [非终结符](#非终结符)
+    - [Jack 语言](#jack-语言)
+        - [Jack 语言简介](#jack-语言简介)
+        - [Jack 语言规范](#jack-语言规范)
+            - [语言相关元素](#语言相关元素)
+            - [程序结构](#程序结构)
+            - [变量](#变量)
+            - [语句](#语句)
+            - [表达式](#表达式)
+            - [函数调用](#函数调用)
+            - [构造函数和析构函数](#构造函数和析构函数)
+            - [Jack 标准库](#jack-标准库)
+    - [语法分析](#语法分析)
+    - [输入](#输入)
+    - [输出](#输出)
+        - [终结符](#终结符)
+        - [非终结符](#非终结符)
 
 ## Jack 语言
 
@@ -51,9 +51,9 @@
    ```
 
 3. Jack 支持 3 种基础数据类型：
-   - int
-   - char
-   - boolean
+    - int
+    - char
+    - boolean
 4. Jack 支持类的定义和实现
    ```Jack
    class Rational {
@@ -71,8 +71,8 @@
    };
    ```
 5. 函数调用
-   - 使用`do Class.function_name()`来调用一个普通函数
-   - 使用`do object.function_name()`来调用一个 method
+    - 使用`do Class.function_name()`来调用一个普通函数
+    - 使用`do object.function_name()`来调用一个 method
 6. 可以使用`if`进行条件判断
 
 ### Jack 语言规范
@@ -113,20 +113,20 @@ class name {
 变量的类型有两种：
 
 - 原始类型
-  - int：16 位的补码表示
-  - char：unicode 字符
-  - boolean：true/false
+    - int：16 位的补码表示
+    - char：unicode 字符
+    - boolean：true/false
 - 对象类型：声明时存储一个空的对象引用，调用构造函数后为新创建的对象分配空间，将该引用指向该空间
-  - Jack 标准库中所有
-    - Array：一元数组，数组中元素的类型可以不一样。在没有用`Array.new(length)`初始化数组时，该值存储的是一个空引用
-    - String：其用法如下
-    ```Jack
-    var String s;
-    var char c;
-    let s = "Hello World";
-    let c = s.charAt(6);
-    ```
-  - 自定义的类的对象
+    - Jack 标准库中所有
+        - Array：一元数组，数组中元素的类型可以不一样。在没有用`Array.new(length)`初始化数组时，该值存储的是一个空引用
+        - String：其用法如下
+      ```Jack
+      var String s;
+      var char c;
+      let s = "Hello World";
+      let c = s.charAt(6);
+      ```
+    - 自定义的类的对象
 
 因为是弱类型，所以可以进行类型转换，转换有如下几种规则：
 
@@ -167,8 +167,8 @@ Jack 语言的几种语句形式如下：
 - 数组索引：如`name[expression]`
 - 过程调用（返回非 void）
 - 一元运算：以`-[variable]`或者`~[variable]`开头的表达式
-  - `-`开头：对值取负
-  - `~`开头：对值取反
+    - `-`开头：对值取负
+    - `~`开头：对值取反
 - 二元运算：`+ - * / & | > < =`（注意不是`==`）
 - `()`：括号内的表达式
 
@@ -242,8 +242,30 @@ Jack 有 8 个标准库，分别是：
 
 ### 非终结符
 
-- class, classVarDec, subroutineDec, parameterList,
-  subroutineBody, varDec;
-- statements, whileSatement, ifStatement, returnStatement,
-  letStatement, doStatement;
+- class, classVarDec, subroutineDec, parameterList, subroutineBody, varDec;
+- statements, whileSatement, ifStatement, returnStatement, letStatement, doStatement;
 - expression, term, expressionList.
+
+## 测试程序
+
+两个输出测试文件：
+
+- xxxT.xml
+- xxx.xml
+
+3个测试程序：
+
+- Square
+- ExpressionlessSquare
+- ArrayTest
+
+## 注意
+
+1. `.xml`文件中的`string`没有`""`
+2. `.xml`文件中的`<, >, ", &`，应该用`&lt; &gt; &quot; &amp;`表示
+
+## 测试方法
+
+- [ ] 实现词法分析程序，使用`TextComparator`比较`xxxT.xml`的结果（词法分析）
+- [ ] 实现语法分析程序，先不对`expression`进行语法分析，使用`ExpressionlessSquare`来进行测试
+- [ ] 完善语法分析程序，对`expression`进行语法分析，使用`Square`和`ArrayTest`来进行测试
