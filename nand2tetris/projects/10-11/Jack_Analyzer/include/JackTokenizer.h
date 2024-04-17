@@ -16,15 +16,18 @@ breaks it into Jack-language tokens, as specified by the Jack grammar
 
 using std::string;
 using std::ifstream;
+using std::ofstream;
 using std::list;
 
 class JackTokenizer {
 private:
     ifstream input;
-    ifstream output;
+    ofstream output;
     string word;
     long val;
     list<string> tokens;
+    string input_filename;
+    string output_filename;
 
 public:
     /**
@@ -40,9 +43,8 @@ public:
      * - input filename: ../test/Square/Main.jack
      * - output filename: ../output/Square/MainT.xml
      * @param input_filename filename of the input file
-     * @return filename of the output file
      */
-    string get_output_filename(string input_filename);
+    void get_output_filename(string input_filename);
 
     /**
      * @return if we have more tokens in the file
@@ -72,7 +74,7 @@ public:
      * @return the character which is the current token.
      * Should be called only when tokenType() is SYMBOL.
      */
-    char symbol();
+    string symbol();
 
 //    /**
 //     * Returns the identifier which is the current token.
@@ -88,12 +90,12 @@ public:
 //     */
 //    int int_val();
 
-//    /**
-//     * Returns the string value of the current token, without the double quotes.
-//     * Should be called only when tokenType() is STRING_CONST.
-//     * @return the string value of the current token
-//     */
-//    string string_val();
+    /**
+     * Returns the string value of the current token, without the double quotes.
+     * Should be called only when tokenType() is STRING_CONST.
+     * @return the string value of the current token
+     */
+    string string_val();
 
     /**
      * Tokenize the input file and generate the .xml output file

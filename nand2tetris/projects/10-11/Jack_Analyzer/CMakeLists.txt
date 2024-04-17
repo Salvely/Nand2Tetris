@@ -10,16 +10,17 @@ project(Jack_Analyzer)
 #set(BOOST_ROOT C:/Program_Files/boost_1_84_0)
 
 find_package(Boost REQUIRED COMPONENTS filesystem)
-if(Boost_FOUND)
-    message ("boost found")
+if (Boost_FOUND)
+    message("boost found")
     include_directories(${Boost_INCLUDE_DIRS})
-else()
-    message (FATAL_ERROR "Cannot find Boost")
-endif()
+else ()
+    message(FATAL_ERROR "Cannot find Boost")
+endif ()
 
 set(SOURCES
         src/JackTokenizer.cpp
         src/CompilationEngine.cpp
+        src/common.cpp
         src/main.cpp
         include/common.h)
 add_executable(${PROJECT_NAME} ${SOURCES})

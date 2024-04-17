@@ -8,6 +8,9 @@ CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.obj
  ../include/JackTokenizer.h
  ../include/common.h
  E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/JackTokenizer.cpp
+CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj
+ ../include/common.h
+ E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/common.cpp
 CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj
  ../include/CompilationEngine.h
  ../include/JackTokenizer.h

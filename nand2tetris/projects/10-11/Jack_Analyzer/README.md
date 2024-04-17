@@ -280,17 +280,3 @@ Jack 有 8 个标准库，分别是：
 其中，keyword的优先级可以通过将其放在`identifier`和`string constant`前面进行判断来实现，
 但是`symbol`不行，因为他可能跟在其他的后面，所以我们在执行的时候，应该首先根据`symbol`把一个`word`断成几段，
 对每段进行判断，将判断的结果压在一个`map`中。最后输出这个`map`。
-
-```cpp
-while(have_next_token())  {
-    word = advance(); // 获取下一个word
-    // parse the word
-    do {
-        //
-    }while(word不为空);
-    // parse the element in the vector
-    do {
-        
-    }while(vector不为空);
-}
-```

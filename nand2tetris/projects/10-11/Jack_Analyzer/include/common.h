@@ -8,8 +8,11 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <iostream>
 
 using std::string;
+using std::cerr;
+using std::endl;
 
 enum TOKEN_TYPE {
     KEYWORD, SYMBOL,
@@ -50,8 +53,10 @@ static std::unordered_map<string, KEYWORD_TYPE> keywords = {{"class",       CLAS
                                                             {"while",       WHILE},
                                                             {"return",      RETURN}};
 static std::vector<char> symbols = {'{', '}', '(', ')', '[', ']', '.', ',', ';', '+', '-', '*', '/', '&', '|', '<',
-                                      '>', '=', '~'};
+                                    '>', '=', '~'};
 
-static string delims = string(symbols.begin(),symbols.end());
+static string delims = string(symbols.begin(), symbols.end());
+
+string get_key(TOKEN_TYPE type);
 
 #endif //JACK_ANALYZER_COMMON_H

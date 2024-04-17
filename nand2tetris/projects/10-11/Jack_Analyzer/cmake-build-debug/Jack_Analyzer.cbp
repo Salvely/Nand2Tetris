@@ -97,6 +97,9 @@
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/JackTokenizer.cpp">
 			<Option target="Jack_Analyzer"/>
 		</Unit>
+		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/common.cpp">
+			<Option target="Jack_Analyzer"/>
+		</Unit>
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/main.cpp">
 			<Option target="Jack_Analyzer"/>
 		</Unit>

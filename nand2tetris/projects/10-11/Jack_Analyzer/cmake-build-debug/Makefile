@@ -176,6 +176,30 @@ src/JackTokenizer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.s
 .PHONY : src/JackTokenizer.cpp.s
 
+src/common.obj: src/common.cpp.obj
+.PHONY : src/common.obj
+
+# target to build an object file
+src/common.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj
+.PHONY : src/common.cpp.obj
+
+src/common.i: src/common.cpp.i
+.PHONY : src/common.i
+
+# target to preprocess a source file
+src/common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/common.cpp.i
+.PHONY : src/common.cpp.i
+
+src/common.s: src/common.cpp.s
+.PHONY : src/common.s
+
+# target to generate assembly for a file
+src/common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/common.cpp.s
+.PHONY : src/common.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -215,6 +239,9 @@ help:
 	@echo ... src/JackTokenizer.obj
 	@echo ... src/JackTokenizer.i
 	@echo ... src/JackTokenizer.s
+	@echo ... src/common.obj
+	@echo ... src/common.i
+	@echo ... src/common.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

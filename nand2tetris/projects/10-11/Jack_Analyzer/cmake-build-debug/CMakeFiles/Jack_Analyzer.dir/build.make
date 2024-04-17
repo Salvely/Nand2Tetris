@@ -93,10 +93,24 @@ CMakeFiles/Jack_Analyzer.dir/src/CompilationEngine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Jack_Analyzer.dir/src/CompilationEngine.cpp.s"
 	D:\Program_Files\Mingw-w64\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\src\CompilationEngine.cpp -o CMakeFiles\Jack_Analyzer.dir\src\CompilationEngine.cpp.s
 
+CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj: CMakeFiles/Jack_Analyzer.dir/flags.make
+CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj: CMakeFiles/Jack_Analyzer.dir/includes_CXX.rsp
+CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj: ../src/common.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj"
+	D:\Program_Files\Mingw-w64\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Jack_Analyzer.dir\src\common.cpp.obj -c E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\src\common.cpp
+
+CMakeFiles/Jack_Analyzer.dir/src/common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Jack_Analyzer.dir/src/common.cpp.i"
+	D:\Program_Files\Mingw-w64\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\src\common.cpp > CMakeFiles\Jack_Analyzer.dir\src\common.cpp.i
+
+CMakeFiles/Jack_Analyzer.dir/src/common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Jack_Analyzer.dir/src/common.cpp.s"
+	D:\Program_Files\Mingw-w64\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\src\common.cpp -o CMakeFiles\Jack_Analyzer.dir\src\common.cpp.s
+
 CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj: CMakeFiles/Jack_Analyzer.dir/flags.make
 CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj: CMakeFiles/Jack_Analyzer.dir/includes_CXX.rsp
 CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj"
 	D:\Program_Files\Mingw-w64\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Jack_Analyzer.dir\src\main.cpp.obj -c E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\src\main.cpp
 
 CMakeFiles/Jack_Analyzer.dir/src/main.cpp.i: cmake_force
@@ -111,6 +125,7 @@ CMakeFiles/Jack_Analyzer.dir/src/main.cpp.s: cmake_force
 Jack_Analyzer_OBJECTS = \
 "CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.obj" \
 "CMakeFiles/Jack_Analyzer.dir/src/CompilationEngine.cpp.obj" \
+"CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj" \
 "CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj"
 
 # External object files for target Jack_Analyzer
@@ -118,6 +133,7 @@ Jack_Analyzer_EXTERNAL_OBJECTS =
 
 Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.obj
 Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/src/CompilationEngine.cpp.obj
+Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj
 Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj
 Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/build.make
 Jack_Analyzer.exe: D:/Program_Files/Mingw-w64/x86_64-8.1.0-release-posix-seh-rt_v6-rev0/mingw64/lib/libboost_filesystem-mgw8-mt-d-x64-1_84.a
@@ -125,7 +141,7 @@ Jack_Analyzer.exe: D:/Program_Files/Mingw-w64/x86_64-8.1.0-release-posix-seh-rt_
 Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/linklibs.rsp
 Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/objects1.rsp
 Jack_Analyzer.exe: CMakeFiles/Jack_Analyzer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Jack_Analyzer.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\projects\Nand2Tetris\nand2tetris\projects\10-11\Jack_Analyzer\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Jack_Analyzer.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Jack_Analyzer.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
