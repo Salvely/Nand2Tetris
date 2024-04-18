@@ -15,7 +15,7 @@ using std::cout;
 JackTokenizer::JackTokenizer(string input_filename) {
     this->input_filename = input_filename;
     input.open(input_filename);
-    get_output_filename(input_filename);
+    get_output_filename();
     boost::filesystem::path p(output_filename);
     if (!exists(p.parent_path()))
         boost::filesystem::create_directories(p.parent_path());
@@ -188,7 +188,7 @@ string JackTokenizer::string_val() {
     return word.substr(1, word.length() - 2);
 }
 
-void JackTokenizer::get_output_filename(string input_filename) {
+string JackTokenizer::get_output_filename() {
     this->output_filename = input_filename;
     // find the `test` in the output_filename
     std::size_t index = output_filename.find("test");
@@ -205,4 +205,5 @@ void JackTokenizer::get_output_filename(string input_filename) {
         exit(1);
     }
     output_filename.replace(index, 5, "T.xml");
+    return output_filename;
 }

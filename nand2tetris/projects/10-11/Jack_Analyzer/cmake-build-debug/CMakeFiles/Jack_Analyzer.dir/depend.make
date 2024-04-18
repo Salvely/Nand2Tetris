@@ -3,6 +3,7 @@
 
 CMakeFiles/Jack_Analyzer.dir/src/CompilationEngine.cpp.obj: \
  ../include/CompilationEngine.h \
+ ../include/common.h \
  ../src/CompilationEngine.cpp
 CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.obj: \
  ../include/JackTokenizer.h \

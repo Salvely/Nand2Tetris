@@ -11,6 +11,8 @@ using std::cout;
 using std::endl;
 using std::cerr;
 
+int compile_file(string filename);
+
 int main(int argc, char *argv[]) {
     // read the filename/directory name from the command line
     if (argc != 2) {
@@ -24,22 +26,37 @@ int main(int argc, char *argv[]) {
             recursive_directory_iterator iter(p);
             for (auto &dir_Entry: iter) {
                 if (!dir_Entry.is_directory() && dir_Entry.path().string().find(".jack") != string::npos) {
-                    cout << "Parsing: " << dir_Entry.path().string() << endl;
-                    input_filename = dir_Entry.path().string();
-                    JackTokenizer tokenizer(input_filename);
-                    tokenizer.compile();
+                    compile_file(dir_Entry.path().string());
                 }
             }
         } else {
-            cout << "Parsing: " << p.string() << endl;
-            input_filename = p.string();
-            JackTokenizer tokenizer(input_filename);
-            tokenizer.compile();
+            compile_file(p.string());
         }
     } else {
         cerr << "Path " << argv[1] << " does not exists." << endl;
         exit(1);
     }
 
+    return 0;
+}
+
+/**
+ * tokenize and compile the file
+ * @param filename
+ * @return if compilation success
+ */
+int compile_file(string filename) {
+    cout << "Parsing: " << filename << endl;
+    string input_filename = filename;
+    JackTokenizer tokenizer(input_filename);
+    tokenizer.compile();
+
+    // pass the output of tokenizer as the input of compilation engine
+    string engine_input_filename = tokenizer.get_output_filename();
+    string engine_output_filename = engine_input_filename;
+    size_t index = engine_output_filename.find("T.xml");
+    engine_output_filename.replace(index, 5, ".xml");
+    CompilationEngine engine(engine_input_filename, engine_output_filename);
+    engine.compile_class();
     return 0;
 }

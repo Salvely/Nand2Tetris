@@ -266,7 +266,7 @@ Jack 有 8 个标准库，分别是：
 
 ## 测试方法
 
-- [ ] 实现词法分析程序，使用`TextComparator`比较`xxxT.xml`的结果（词法分析）
+- [x] 实现词法分析程序，使用`TextComparator`比较`xxxT.xml`的结果（词法分析）
 - [ ] 实现语法分析程序，先不对`expression`进行语法分析，使用`ExpressionlessSquare`来进行测试
 - [ ] 完善语法分析程序，对`expression`进行语法分析，使用`Square`和`ArrayTest`来进行测试
 
@@ -277,6 +277,52 @@ Jack 有 8 个标准库，分别是：
 1. keyword
 2. symbol
 
-其中，keyword的优先级可以通过将其放在`identifier`和`string constant`前面进行判断来实现，
-但是`symbol`不行，因为他可能跟在其他的后面，所以我们在执行的时候，应该首先根据`symbol`把一个`word`断成几段，
-对每段进行判断，将判断的结果压在一个`map`中。最后输出这个`map`。
+其中，keyword的优先级可以通过将其放在`identifier`和`string constant`前面进行判断来实现， 但是`symbol`不行，因为他可能跟在其他的后面，所以我们在执行的时候，应该首先根据`symbol`
+把一个`word`断成几段， 对每段进行判断，将判断的结果压在一个`list`中。最后输出这个`list`。
+
+## 语法分析
+
+要检查的内容包括（2.30之前完成）：
+
+1. 每个输出之前的缩进实现
+2. 各个compile语句的逻辑，是否已经完全走完了所有的终结符和非终结符
+3. 各个compile语句的返回值，到底是返回-1，还是`exit(1)`
+4. 是否实现了完善的回溯机制
+5. 各个compile语句什么时候打印<非终结符>xxx</非终结符>(只有非终结符需要tag和closetag，其他的不需要)
+6. `compile_term()`中的`LR(1)`语法分析是否实现完全
+
+Todo:
+
+1. 测试
+2. Codegen完成
+3. OS部分完成
+4. CS61A完成
+5. Python实现Scheme解释器
+6. MIT 6.037完成
+7. Scheme实现Scheme解释器
+8. SICP阅读
+9. Jack语言实现Scheme解释器
+10. 15-213完成
+11. 其他系统入门课程完成
+
+- [ ] subroutine_dec
+- [ ] parameter_list
+- [ ] subroutine_body
+- [ ] var_dec
+- [ ] class_name
+- [ ] subroutine_name
+- [ ] varName
+- [ ] statements
+- [ ] statement
+- [ ] letStatement
+- [ ] ifStatement
+- [ ] whileStatement
+- [ ] doStatement
+- [ ] returnStatement
+- [ ] expression
+- [ ] term
+- [ ] subroutine_call
+- [ ] expression_list
+- [ ] op
+- [ ] unary_op
+- [ ] keyword_constant

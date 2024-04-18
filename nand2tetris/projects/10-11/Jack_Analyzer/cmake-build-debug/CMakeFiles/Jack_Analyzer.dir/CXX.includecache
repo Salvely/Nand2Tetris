@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+../include/CompilationEngine.h
+string
+-
+fstream
+-
+sstream
+-
+
 ../include/JackTokenizer.h
 string
 -
@@ -28,15 +36,13 @@ unordered_map
 iostream
 -
 
-E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/JackTokenizer.cpp
-JackTokenizer.h
-E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/JackTokenizer.h
+E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/main.cpp
 iostream
--
-algorithm
--
-boost/algorithm/string.hpp
 -
 boost/filesystem.hpp
 -
+JackTokenizer.h
+E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/JackTokenizer.h
+CompilationEngine.h
+E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CompilationEngine.h
 

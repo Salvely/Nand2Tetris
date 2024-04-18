@@ -4,16 +4,30 @@
 
 #ifndef JACK_ANALYZER_COMPILATIONENGINE_H
 #define JACK_ANALYZER_COMPILATIONENGINE_H
+
 #include <string>
 #include <fstream>
+#include <sstream>
+
 using std::ifstream;
 using std::ofstream;
 using std::string;
+using std::istringstream;
 
 class CompilationEngine {
 private:
+    string input_filename;
+    string output_filename;
     ifstream input;
     ofstream output;
+    string tag;
+    string closingtag;
+    string word;
+    istringstream is;
+    int ret;
+    string line;
+    long long read_header;
+
 public:
     /**
      * Creates a new compilation engine with the given input and output.
@@ -23,9 +37,8 @@ public:
 
     /**
      * Compiles a complete class.
-     * @return if compilation success
      */
-    int compile_class();
+    void compile_class();
 
     /**
      *  Compiles a static declaration or a field declaration.
@@ -110,5 +123,40 @@ public:
      * @return if compilation success
      */
     int compile_expression_list();
+
+    /**
+     *
+     * @param token_type type of the token, such as identifier, keyword, etc
+     * @param token the token needs to be checked
+     * @return if token is valid, return 0, otherwise return -1
+     */
+    int check_token_valid(const string& token_type, const string& token="");
+
+    /**
+     * check if valid type declaration
+     * @return if type is valid
+     */
+    int compile_type();
+
+    int compile_subroutine_body();
+
+    void next_line();
+
+    void stringbuf_clear();
+
+    int compile_statement();
+
+    int compile_subroutine_call();
+
+    int compile_unary_op();
+
+    int compile_keyword_constant();
+
+    int compile_op();
+
+    static void write_nonterminal(const string& non_terminal);
+
+    static void write_close_nonterminal(const string& non_terminal);
 };
+
 #endif //JACK_ANALYZER_COMPILATIONENGINE_H

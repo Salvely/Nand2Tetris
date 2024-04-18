@@ -43,8 +43,9 @@ public:
      * - input filename: ../test/Square/Main.jack
      * - output filename: ../output/Square/MainT.xml
      * @param input_filename filename of the input file
+     * @return the output filename
      */
-    void get_output_filename(string input_filename);
+    string get_output_filename();
 
     /**
      * @return if we have more tokens in the file
