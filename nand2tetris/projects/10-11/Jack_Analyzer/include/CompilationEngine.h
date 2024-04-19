@@ -13,6 +13,7 @@ using std::ifstream;
 using std::ofstream;
 using std::string;
 using std::istringstream;
+using std::ostringstream;
 
 class CompilationEngine {
 private:
@@ -27,6 +28,7 @@ private:
     int ret;
     string line;
     long long read_header;
+    ostringstream os;
 
 public:
     /**
@@ -154,9 +156,11 @@ public:
 
     int compile_op();
 
-    static void write_nonterminal(const string& non_terminal);
+    void write_nonterminal(const string& non_terminal);
 
-    static void write_close_nonterminal(const string& non_terminal);
+    void write_close_nonterminal(const string& non_terminal);
+
+    int check_op(const string &token_type);
 };
 
 #endif //JACK_ANALYZER_COMPILATIONENGINE_H

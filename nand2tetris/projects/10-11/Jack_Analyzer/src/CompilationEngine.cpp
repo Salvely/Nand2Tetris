@@ -7,6 +7,8 @@
 #include <sstream>
 #include <iomanip>
 #include <common.h>
+#include <vector>
+#include <algorithm>
 
 using std::cerr;
 using std::endl;
@@ -19,12 +21,12 @@ using std::setfill;
 CompilationEngine::CompilationEngine(string input_filename, string output_filename) {
     this->input_filename = input_filename;
     this->output_filename = output_filename;
-    input.open(input_filename);
+    input.open(input_filename, std::ios::binary);
     if (!input.is_open()) {
         cerr << "Compilation Engine could not open file " << input_filename << endl;
         exit(1);
     }
-    output.open(output_filename, std::fstream::out | std::fstream::trunc);
+    output.open(output_filename, std::fstream::out | std::fstream::trunc | std::ios::binary);
     if (!output.is_open()) {
         cerr << "Compilation Engine could not output file " << output_filename << endl;
         exit(1);
@@ -36,7 +38,7 @@ void CompilationEngine::compile_class() {
 
     // get rid of <token>
     getline(input, line);
-    if (line != "<token>") {
+    if (line.find("<tokens>") == string::npos) {
         std::cerr << "Syntax analysis failed: the first line of " << input_filename << " is not <token>" << endl;
         exit(1);
     }
@@ -80,7 +82,7 @@ void CompilationEngine::compile_class() {
         read_header = input.tellg();
         // classroutinedec (call compile_subroutine)
         ret = compile_subroutine();
-    } while (ret == -1);
+    } while (ret != -1);
     input.seekg(read_header, std::ios_base::beg);
 
     // } (symbol)
@@ -94,8 +96,8 @@ void CompilationEngine::compile_class() {
 
     // get rid of </token>
     getline(input, line);
-    if (line != "</token>") {
-        std::cerr << "Parsing failed: the last line of " << input_filename << " is not <token>" << endl;
+    if (line.find("</tokens>") == string::npos) {
+        std::cerr << "Parsing failed: the last line of " << input_filename << " is not </tokens>" << endl;
         exit(1);
     }
     write_close_nonterminal("class");
@@ -106,10 +108,12 @@ int CompilationEngine::compile_class_var_dec() {
 
     // static / field
     next_line();
+
     ret = check_token_valid("keyword", "static | field");
     if (ret == -1) {
         cerr << "Static/field not found in variable declaration" << endl;
         is.clear();
+        write_close_nonterminal("classVarDec");
         return -1;
     }
     stringbuf_clear();
@@ -155,7 +159,7 @@ int CompilationEngine::compile_class_var_dec() {
 
     // ;
     next_line();
-    ret = check_token_valid("symbol", ",");
+    ret = check_token_valid("symbol", ";");
     if (ret == -1) {
         cerr << "No ; symbol detected in the end of variable declaration" << endl;
         exit(1);
@@ -175,6 +179,7 @@ int CompilationEngine::compile_subroutine() {
     if (ret == -1) {
         cerr << "Expecting constructor | function | method in subroutine declaration" << endl;
         is.clear();
+        write_close_nonterminal("subroutineDec");
         return -1;
     }
     stringbuf_clear();
@@ -226,6 +231,9 @@ int CompilationEngine::compile_subroutine() {
 
 int CompilationEngine::compile_parameter_list() {
     write_nonterminal("parameterList");
+    output << os.str();
+    os.str("");
+    os.clear();
 
     // record the read header
     read_header = input.tellg();
@@ -237,6 +245,8 @@ int CompilationEngine::compile_parameter_list() {
         cerr << "There's no parameter list." << endl;
         input.seekg(read_header, std::ios_base::beg);
         is.clear();
+        ret = 0;
+        write_close_nonterminal("parameterList");
         return 0;
     }
     stringbuf_clear();
@@ -257,7 +267,7 @@ int CompilationEngine::compile_parameter_list() {
         next_line();
         ret = check_token_valid("symbol", ",");
         if (ret == -1) {
-            std::cout << "There's only one parameter in the parameter list." << endl;
+            std::cerr << "There's only one parameter in the parameter list." << endl;
             is.clear();
             break;
         }
@@ -283,12 +293,17 @@ int CompilationEngine::compile_parameter_list() {
     } while (ret != -1);
     input.seekg(read_header, std::ios_base::beg);
 
+    ret = 0;
+
     write_close_nonterminal("parameterList");
     return 0;
 }
 
 int CompilationEngine::compile_subroutine_body() {
     write_nonterminal("subroutineBody");
+    output << os.str();
+    os.str("");
+    os.clear();
 
     // {
     next_line();
@@ -330,6 +345,7 @@ int CompilationEngine::compile_var_dec() {
     if (ret == -1) {
         cerr << "There's no var keyword in variable declaration, compile_var_dec() failed." << endl;
         is.clear();
+        write_close_nonterminal("varDec");
         return -1;
     }
     stringbuf_clear();
@@ -387,6 +403,9 @@ int CompilationEngine::compile_var_dec() {
 
 int CompilationEngine::compile_statements() {
     write_nonterminal("statements");
+    output << os.str();
+    os.str("");
+    os.clear();
 
     // statement*
     do {
@@ -395,6 +414,8 @@ int CompilationEngine::compile_statements() {
         ret = compile_statement();
     } while (ret != -1);
     input.seekg(read_header, std::ios_base::beg);
+
+    ret = 0;
 
     write_close_nonterminal("statements");
     return 0;
@@ -453,6 +474,7 @@ int CompilationEngine::compile_do() {
     if (ret == -1) {
         cerr << "There's no keyword do in do statement, compile_do() failed." << endl;
         is.clear();
+        write_close_nonterminal("doStatement");
         return -1;
     }
     stringbuf_clear();
@@ -481,6 +503,7 @@ int CompilationEngine::compile_let() {
     ret = check_token_valid("keyword", "let");
     if (ret == -1) {
         cerr << "There's no keyword let in do statement, compile_let() failed." << endl;
+        write_close_nonterminal("letStatement");
         return -1;
     }
     stringbuf_clear();
@@ -552,6 +575,7 @@ int CompilationEngine::compile_while() {
     if (ret == -1) {
         cerr << "There's no while keyword in while statement, compile_while() failed." << endl;
         is.clear();
+        write_close_nonterminal("whileStatement");
         return -1;
     }
     stringbuf_clear();
@@ -611,6 +635,7 @@ int CompilationEngine::compile_return() {
     if (ret == -1) {
         cerr << "There's no return statement" << endl;
         is.clear();
+        write_close_nonterminal("returnStatement");
         return -1;
     }
     stringbuf_clear();
@@ -643,6 +668,7 @@ int CompilationEngine::compile_if() {
     ret = check_token_valid("keyword", "if");
     if (ret == -1) {
         cerr << "There's no keyword if in if statement, compile_if() failed." << endl;
+        write_close_nonterminal("ifStatement");
         return -1;
     }
     stringbuf_clear();
@@ -698,6 +724,8 @@ int CompilationEngine::compile_if() {
         input.seekg(read_header, std::ios_base::beg);
         is.clear();
     } else {
+        stringbuf_clear();
+
         // {
         next_line();
         ret = check_token_valid("symbol", "{");
@@ -720,17 +748,21 @@ int CompilationEngine::compile_if() {
         stringbuf_clear();
     }
 
+    ret = 0;
     write_close_nonterminal("ifStatement");
     return 0;
 }
 
 int CompilationEngine::compile_expression() {
     write_nonterminal("expression");
+//    output << os.str();
+//    os.str("");
 
     // term
     ret = compile_term();
     if (ret == -1) {
         is.clear();
+        write_close_nonterminal("expression");
         return -1;
     }
 
@@ -742,11 +774,13 @@ int CompilationEngine::compile_expression() {
             ret = compile_term();
             if (ret == -1) {
                 cerr << "No term after op in (op term)*, compile_expression() failed." << endl;
-                exit(1);
+                break;
             }
         }
     } while (ret != -1);
     input.seekg(read_header, std::ios_base::beg);
+
+    ret = 0;
 
     write_close_nonterminal("expression");
     return 0;
@@ -761,6 +795,7 @@ int CompilationEngine::compile_term() {
     ret = check_token_valid("integerConstant");
     if (ret != -1) {
         stringbuf_clear();
+        write_close_nonterminal("term");
         return 0;
     }
     is.clear();
@@ -772,6 +807,7 @@ int CompilationEngine::compile_term() {
     ret = check_token_valid("stringConstant");
     if (ret != -1) {
         stringbuf_clear();
+        write_close_nonterminal("term");
         return 0;
     }
     is.clear();
@@ -781,6 +817,7 @@ int CompilationEngine::compile_term() {
     read_header = input.tellg();
     ret = compile_keyword_constant();
     if (ret != -1) {
+        write_close_nonterminal("term");
         return 0;
     }
     is.clear();
@@ -790,6 +827,7 @@ int CompilationEngine::compile_term() {
     read_header = input.tellg();
     ret = compile_subroutine_call();
     if (ret != -1) {
+        write_close_nonterminal("term");
         return 0;
     }
     is.clear();
@@ -823,6 +861,7 @@ int CompilationEngine::compile_term() {
                 input.seekg(read_header, std::ios_base::beg);
             } else {
                 stringbuf_clear();
+                write_close_nonterminal("term");
                 return 0;
             }
         }
@@ -833,8 +872,10 @@ int CompilationEngine::compile_term() {
     ret = compile_unary_op();
     if (ret != -1) {
         ret = compile_term();
-        if (ret != -1)
+        if (ret != -1) {
+            write_close_nonterminal("term");
             return 0;
+        }
         cerr << "Term not existed in uaryOp term" << endl;
         exit(1);
     }
@@ -849,7 +890,6 @@ int CompilationEngine::compile_term() {
         stringbuf_clear();
 
         // varName '[' expression ']' |
-        input.seekg(read_header, std::ios_base::beg);
         read_header = input.tellg();
         // [
         next_line();
@@ -874,7 +914,12 @@ int CompilationEngine::compile_term() {
                 cerr << "Expecting expression in varName [ expression ], compile_term() failed." << endl;
                 exit(1);
             }
+        } else {
+            input.seekg(read_header, std::ios_base::beg);
+            is.clear();
+            ret = 0;
         }
+        write_close_nonterminal("term");
         return 0;
     }
 
@@ -892,32 +937,39 @@ int CompilationEngine::compile_subroutine_call() {
         input.seekg(read_header, std::ios_base::beg);
         is.clear();
     } else {
+        string iden = line;
+
         // (
         next_line();
         ret = check_token_valid("symbol", "(");
         if (ret == -1) {
             cerr << "Expecting ( in `subroutineName ( expressionList )`, compile_subroutine_call() failed." << endl;
-            exit(1);
-        }
-        stringbuf_clear();
+            input.seekg(read_header, std::ios_base::beg);
+            is.clear();
+        } else {
+            os << iden << endl;
+            is.clear();
+            stringbuf_clear();
 
-        // expressionList
-        ret = compile_expression_list();
-        if (ret == -1) {
-            cerr << "Expecting expressionList in `subroutineName ( expressionList )`, compile_subroutine_call() failed."
-                 << endl;
-            exit(1);
-        }
+            // expressionList
+            ret = compile_expression_list();
+            if (ret == -1) {
+                cerr
+                        << "Expecting expressionList in `subroutineName ( expressionList )`, compile_subroutine_call() failed."
+                        << endl;
+                exit(1);
+            }
 
-        // )
-        next_line();
-        ret = check_token_valid("symbol", ")");
-        if (ret == -1) {
-            cerr << "Expecting ) in `subroutineName ( expressionList )`, compile_subroutine_call() failed." << endl;
-            exit(1);
+            // )
+            next_line();
+            ret = check_token_valid("symbol", ")");
+            if (ret == -1) {
+                cerr << "Expecting ) in `subroutineName ( expressionList )`, compile_subroutine_call() failed." << endl;
+                exit(1);
+            }
+            stringbuf_clear();
+            return 0;
         }
-        stringbuf_clear();
-        return 0;
     }
 
     // (className | varName)
@@ -929,14 +981,18 @@ int CompilationEngine::compile_subroutine_call() {
                 << endl;
         return -1;
     }
-    stringbuf_clear();
+    string iden = line;
+    is.clear();
 
     // '.'
     next_line();
     ret = check_token_valid("symbol", ".");
     if (ret == -1) {
         cerr << "No symbol . in subroutine call, compile_subroutine_call() failed." << endl;
-        exit(1);
+        return -1;
+    }
+    if (ret != -1) {
+        os << iden << endl;
     }
     stringbuf_clear();
 
@@ -980,6 +1036,9 @@ int CompilationEngine::compile_subroutine_call() {
 
 int CompilationEngine::compile_expression_list() {
     write_nonterminal("expressionList");
+    output << os.str();
+    os.str("");
+    os.clear();
 
     // (expression (',' expression)* )?
     read_header = input.tellg();
@@ -1008,6 +1067,7 @@ int CompilationEngine::compile_expression_list() {
         is.clear();
     }
 
+    ret = 0;
     write_close_nonterminal("expressionList");
     return 0;
 }
@@ -1015,7 +1075,7 @@ int CompilationEngine::compile_expression_list() {
 int CompilationEngine::compile_op() {
     // '+'|'-'|'*'|'/'|'&'|'|'|'<'|'>'|'='
     next_line();
-    ret = check_token_valid("symbol", "+ - * / &amp; | &lt; &gt; = ");
+    ret = check_op("symbol");
     if (ret == -1) {
         is.clear();
         return -1;
@@ -1027,7 +1087,7 @@ int CompilationEngine::compile_op() {
 int CompilationEngine::compile_unary_op() {
     // '-'|'~'
     next_line();
-    ret = check_token_valid("symbol", " - | ~");
+    ret = check_token_valid("symbol", " - ~");
     if (ret == -1) {
         is.clear();
         return -1;
@@ -1039,7 +1099,7 @@ int CompilationEngine::compile_unary_op() {
 int CompilationEngine::compile_keyword_constant() {
     //  'true'|'false'|'null'|'this'
     next_line();
-    ret = check_token_valid("keyword", "true | false | null | this");
+    ret = check_token_valid("keyword", "true false null this");
     if (ret == -1) {
         is.clear();
         return -1;
@@ -1055,15 +1115,38 @@ void CompilationEngine::next_line() {
 }
 
 void CompilationEngine::stringbuf_clear() {
+    cout.clear();
+    os << line << endl;
+    output << os.str();
+    os.str("");
+    os.clear();
     is.clear();
-    cout << setw(indent) << std::setfill('\t') << line << endl;
 }
 
 int CompilationEngine::check_token_valid(const string &token_type, const string &token) {
-    if (tag.find(token_type) == string::npos || closingtag.find(token_type) == string::npos) {
+    if (tag.find(token_type) == string::npos) {
+        is.clear();
+        cout.clear();
         return -1;
     }
     if (!token.empty() && token.find(word) == string::npos) {
+        is.clear();
+        cout.clear();
+        return -1;
+    }
+    return 0;
+}
+
+int CompilationEngine::check_op(const string &token_type) {
+    std::vector<string> ops = {"+", "-", "*", "/", "&amp;", "|", "&lt;", "&gt;", "="};
+    if (tag.find(token_type) == string::npos) {
+        is.clear();
+        cout.clear();
+        return -1;
+    }
+    if (std::find(ops.begin(), ops.end(), word) == ops.end()) {
+        is.clear();
+        cout.clear();
         return -1;
     }
     return 0;
@@ -1073,19 +1156,28 @@ int CompilationEngine::compile_type() {
     // type: int char boolean(keyword) | className(identifier)
     // TODO: check if className valid
     if (check_token_valid("keyword", "int | char | boolean") == -1 && check_token_valid("identifier") == -1) {
+        is.clear();
+        cout.clear();
         return -1;
     }
     return 0;
 }
 
 void CompilationEngine::write_nonterminal(const string &non_terminal) {
-    cout << setw(indent) << std::setfill('\t') << "<" << non_terminal << ">" << endl;
+    cout.clear();
+//    os.write("  ", indent);
+    os << "<" << non_terminal << ">" << endl;
     indent += 1;
 }
 
 void CompilationEngine::write_close_nonterminal(const string &non_terminal) {
+    cout.clear();
     indent -= 1;
-    cout << setw(indent) << std::setfill('\t') << "<" << non_terminal << "/>" << endl;
+//    os.write("  ", indent);
+    os << "</" << non_terminal << ">" << endl;
+    if (ret != -1) {
+        output << os.str();
+    }
+    os.str("");
+    os.clear();
 }
-
-

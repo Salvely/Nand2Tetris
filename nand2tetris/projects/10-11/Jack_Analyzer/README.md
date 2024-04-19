@@ -306,23 +306,28 @@ Todo:
 11. 其他系统入门课程完成
 
 - [ ] subroutine_dec
-- [ ] parameter_list
-- [ ] subroutine_body
+- [x] parameter_list
+- [x] subroutine_body
 - [ ] var_dec
 - [ ] class_name
 - [ ] subroutine_name
 - [ ] varName
-- [ ] statements
+- [x] statements
 - [ ] statement
 - [ ] letStatement
 - [ ] ifStatement
 - [ ] whileStatement
 - [ ] doStatement
 - [ ] returnStatement
-- [ ] expression
+- [x] expression
 - [ ] term
-- [ ] subroutine_call
-- [ ] expression_list
+- [x] subroutine_call
+- [x] expression_list
 - [ ] op
 - [ ] unary_op
 - [ ] keyword_constant
+
+# Compiler Engine异常情况
+
+1. `compile_if()`中有else，else没打出来
+2. `compile_do()`中`()`中没有`expression`的情况没打出来(`do draw();`还有`do moveSquare();`)

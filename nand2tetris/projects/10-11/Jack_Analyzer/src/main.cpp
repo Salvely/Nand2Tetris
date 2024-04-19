@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
  * @return if compilation success
  */
 int compile_file(string filename) {
-    cout << "Parsing: " << filename << endl;
+    cerr << "Parsing: " << filename << endl;
     string input_filename = filename;
     JackTokenizer tokenizer(input_filename);
     tokenizer.compile();

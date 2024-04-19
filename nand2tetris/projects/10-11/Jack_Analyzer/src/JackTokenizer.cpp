@@ -20,7 +20,8 @@ JackTokenizer::JackTokenizer(string input_filename) {
     if (!exists(p.parent_path()))
         boost::filesystem::create_directories(p.parent_path());
     size_t index = output_filename.find('\\');
-    output_filename.replace(index, 1, "/");
+    if (index != string::npos)
+        output_filename.replace(index, 1, "/");
     output.open(output_filename, std::fstream::trunc | std::fstream::out);
     if (!output.is_open()) {
         cerr << "Output file " << output_filename << " not opened." << endl;
@@ -65,7 +66,7 @@ bool JackTokenizer::has_more_tokens() {
 
 void JackTokenizer::advance() {
     input >> word;
-    if(input.fail()) {
+    if (input.fail()) {
         return;
     }
     if (word.find("/*") != string::npos || word.find("/**") != string::npos || word.find("//") != string::npos) {
