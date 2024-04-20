@@ -22,7 +22,7 @@ set(SOURCES
         src/CompilationEngine.cpp
         src/common.cpp
         src/main.cpp
-        include/common.h)
+        src/SymbolTable.cpp src/VMWriter.cpp include/VMWriter.h)
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME}
         PRIVATE

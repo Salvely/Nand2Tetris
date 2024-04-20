@@ -9,6 +9,9 @@ CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.obj: \
  ../include/JackTokenizer.h \
  ../include/common.h \
  ../src/JackTokenizer.cpp
+CMakeFiles/Jack_Analyzer.dir/src/SymbolTable.cpp.obj: \
+ ../include/SymbolTable.h \
+ ../src/SymbolTable.cpp
 CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj: \
  ../include/common.h \
  ../src/common.cpp

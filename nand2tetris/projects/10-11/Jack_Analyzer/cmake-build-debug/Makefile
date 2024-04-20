@@ -128,6 +128,30 @@ Jack_Analyzer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/build
 .PHONY : Jack_Analyzer/fast
 
+VMWriter.obj: VMWriter.cpp.obj
+.PHONY : VMWriter.obj
+
+# target to build an object file
+VMWriter.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.obj
+.PHONY : VMWriter.cpp.obj
+
+VMWriter.i: VMWriter.cpp.i
+.PHONY : VMWriter.i
+
+# target to preprocess a source file
+VMWriter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.i
+.PHONY : VMWriter.cpp.i
+
+VMWriter.s: VMWriter.cpp.s
+.PHONY : VMWriter.s
+
+# target to generate assembly for a file
+VMWriter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.s
+.PHONY : VMWriter.cpp.s
+
 src/CompilationEngine.obj: src/CompilationEngine.cpp.obj
 .PHONY : src/CompilationEngine.obj
 
@@ -175,6 +199,30 @@ src/JackTokenizer.s: src/JackTokenizer.cpp.s
 src/JackTokenizer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.s
 .PHONY : src/JackTokenizer.cpp.s
+
+src/SymbolTable.obj: src/SymbolTable.cpp.obj
+.PHONY : src/SymbolTable.obj
+
+# target to build an object file
+src/SymbolTable.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/SymbolTable.cpp.obj
+.PHONY : src/SymbolTable.cpp.obj
+
+src/SymbolTable.i: src/SymbolTable.cpp.i
+.PHONY : src/SymbolTable.i
+
+# target to preprocess a source file
+src/SymbolTable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/SymbolTable.cpp.i
+.PHONY : src/SymbolTable.cpp.i
+
+src/SymbolTable.s: src/SymbolTable.cpp.s
+.PHONY : src/SymbolTable.s
+
+# target to generate assembly for a file
+src/SymbolTable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/SymbolTable.cpp.s
+.PHONY : src/SymbolTable.cpp.s
 
 src/common.obj: src/common.cpp.obj
 .PHONY : src/common.obj
@@ -233,12 +281,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Jack_Analyzer
+	@echo ... VMWriter.obj
+	@echo ... VMWriter.i
+	@echo ... VMWriter.s
 	@echo ... src/CompilationEngine.obj
 	@echo ... src/CompilationEngine.i
 	@echo ... src/CompilationEngine.s
 	@echo ... src/JackTokenizer.obj
 	@echo ... src/JackTokenizer.i
 	@echo ... src/JackTokenizer.s
+	@echo ... src/SymbolTable.obj
+	@echo ... src/SymbolTable.i
+	@echo ... src/SymbolTable.s
 	@echo ... src/common.obj
 	@echo ... src/common.i
 	@echo ... src/common.s

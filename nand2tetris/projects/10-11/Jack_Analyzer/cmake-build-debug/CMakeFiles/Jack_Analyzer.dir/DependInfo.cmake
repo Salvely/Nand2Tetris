@@ -8,8 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/VMWriter.cpp" "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/cmake-build-debug/CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.obj"
   "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CompilationEngine.cpp" "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/cmake-build-debug/CMakeFiles/Jack_Analyzer.dir/src/CompilationEngine.cpp.obj"
   "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/JackTokenizer.cpp" "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/cmake-build-debug/CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.obj"
+  "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/SymbolTable.cpp" "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/cmake-build-debug/CMakeFiles/Jack_Analyzer.dir/src/SymbolTable.cpp.obj"
   "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/common.cpp" "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/cmake-build-debug/CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj"
   "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/main.cpp" "E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/cmake-build-debug/CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj"
   )
