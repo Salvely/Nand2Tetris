@@ -15,7 +15,7 @@ using std::ofstream;
 
 class CodeGen {
 private:
-    SymbolTable class_scope_st;
+    SymbolTable st;
     string input_filename;
     string output_filename;
     ifstream input;

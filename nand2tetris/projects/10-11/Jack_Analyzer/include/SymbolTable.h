@@ -6,16 +6,30 @@
 #define JACK_ANALYZER_SYMBOLTABLE_H
 
 #include <string>
+#include <list>
 
 using std::string;
+using std::list;
+
+typedef struct same_kind_node {
+    string name;
+    string type;
+    int index;
+} same_kind_node_t;
+
+typedef struct node {
+    string kind;
+    list<same_kind_node_t> lst;
+} node_t;
 
 class SymbolTable {
 private:
     /**
-     * 2 hashtable used to store the symbol table
-     * one for the class scope, kind: STATIC FIELD
-     * one for the subroutine scope, kind: ARG VAR
+     * a symbol table is a nested linked list, the inner list contains a list
+     * a node contains: name(identifier), type(int/boolean/String), kind(FIELD/STATIC/VAR/ARG), index
      */
+    list<list<node_t>> class_st;
+    list<list<node_t>> subroutine_st;
 
 public:
     /**
@@ -27,6 +41,16 @@ public:
      * Starts a new subroutine scope (i.e., resets the subroutine’s symbol table)
      */
     void start_subroutine();
+
+    /**
+     * Starts a new class scope
+     */
+    void start_class();
+
+    /**
+     * Starts a new scope for each {} pair in the subroutine call
+     */
+    void subroutine_new_scope();
 
     /**
      * Defines a new identifier of a given name, type, and kind and assigns it a running index.
@@ -44,7 +68,7 @@ public:
      * @param kind kind of the identifier, such as FIELD/STATIC(class scope) or VAR/ARG(subroutine scope)
      * @return the number of variables of the given kind
      */
-    int var_count(string kind);
+    int var_count(const string& kind);
 
     /**
      * Returns the kind of the named identifier in the current scope.
@@ -52,21 +76,21 @@ public:
      * @param kind kind of the identifier, such as FIELD/STATIC(class scope) or VAR/ARG(subroutine scope)
      * @return the kind of the named identifier in the current scope
      */
-    string kind_of(string name);
+    string kind_of(const string& name);
 
     /**
      * Returns the type of the named identifier in the current scope.
      * @param name name of the identifier
      * @return the type of the named identifier in the current scope, such as int/String/boolean
      */
-    string type_of(string name);
+    string type_of(const string& name);
 
     /**
      * Returns the index assigned to the named identifier.
      * @param name name of the identifier
      * @return the index assigned to the named identifier
      */
-    string index_of(string name);
+    int index_of(const string& name);
 };
 
 #endif //JACK_ANALYZER_SYMBOLTABLE_H

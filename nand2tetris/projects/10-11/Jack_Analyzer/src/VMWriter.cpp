@@ -3,47 +3,49 @@
 //
 
 #include "VMWriter.h"
+#include <iostream>
 
-VMWrite::VMWrite(string input_filename, string output_filename) {
+using std::endl;
 
+VMWrite::VMWrite(ifstream &ifs, ofstream &ofs) : input(ifs), output(ofs) {}
+
+void VMWrite::write_push(const string &segment, int index) {
+    output << "push " << segment << " " << index << endl;
 }
 
-void VMWrite::write_push(string segment, int index) {
-
+void VMWrite::write_pop(const string &segment, int index) {
+    output << "pop " << segment << " " << index << endl;
 }
 
-void VMWrite::write_pop(string segment, int index) {
-
+void VMWrite::write_arithemetic(const string &command) {
+    output << command << endl;
 }
 
-void VMWrite::write_arithemetic(string command) {
-
+void VMWrite::write_label(const string &label) {
+    output << "label " << label << endl;
 }
 
-void VMWrite::write_label(string label) {
-
+void VMWrite::write_goto(const string &label) {
+    output << "goto " << label << endl;
 }
 
-void VMWrite::write_goto(string label) {
-
+void VMWrite::write_if(const string &label) {
+    output << "if-goto " << label << endl;
 }
 
-void VMWrite::write_if(string label) {
-
+void VMWrite::write_call(const string &function_name, int arg_num) {
+    output << "call " << function_name << " " << arg_num << endl;
 }
 
-void VMWrite::write_call(string function_name, int arg_num) {
-
-}
-
-void VMWrite::write_function(string function_name, int local_num) {
-
+void VMWrite::write_function(const string &function_name, int local_num) {
+    output << "function " << function_name << " " << local_num << endl;
 }
 
 void VMWrite::write_return() {
-
+    output << "return" << endl;
 }
 
 void VMWrite::close() {
-
+    output.close();
+    input.close();
 }
