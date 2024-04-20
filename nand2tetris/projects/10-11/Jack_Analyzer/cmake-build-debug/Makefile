@@ -128,29 +128,29 @@ Jack_Analyzer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/build
 .PHONY : Jack_Analyzer/fast
 
-VMWriter.obj: VMWriter.cpp.obj
-.PHONY : VMWriter.obj
+src/CodeGen.obj: src/CodeGen.cpp.obj
+.PHONY : src/CodeGen.obj
 
 # target to build an object file
-VMWriter.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.obj
-.PHONY : VMWriter.cpp.obj
+src/CodeGen.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/CodeGen.cpp.obj
+.PHONY : src/CodeGen.cpp.obj
 
-VMWriter.i: VMWriter.cpp.i
-.PHONY : VMWriter.i
+src/CodeGen.i: src/CodeGen.cpp.i
+.PHONY : src/CodeGen.i
 
 # target to preprocess a source file
-VMWriter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.i
-.PHONY : VMWriter.cpp.i
+src/CodeGen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/CodeGen.cpp.i
+.PHONY : src/CodeGen.cpp.i
 
-VMWriter.s: VMWriter.cpp.s
-.PHONY : VMWriter.s
+src/CodeGen.s: src/CodeGen.cpp.s
+.PHONY : src/CodeGen.s
 
 # target to generate assembly for a file
-VMWriter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.s
-.PHONY : VMWriter.cpp.s
+src/CodeGen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/CodeGen.cpp.s
+.PHONY : src/CodeGen.cpp.s
 
 src/CompilationEngine.obj: src/CompilationEngine.cpp.obj
 .PHONY : src/CompilationEngine.obj
@@ -224,6 +224,30 @@ src/SymbolTable.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/SymbolTable.cpp.s
 .PHONY : src/SymbolTable.cpp.s
 
+src/VMWriter.obj: src/VMWriter.cpp.obj
+.PHONY : src/VMWriter.obj
+
+# target to build an object file
+src/VMWriter.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/VMWriter.cpp.obj
+.PHONY : src/VMWriter.cpp.obj
+
+src/VMWriter.i: src/VMWriter.cpp.i
+.PHONY : src/VMWriter.i
+
+# target to preprocess a source file
+src/VMWriter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/VMWriter.cpp.i
+.PHONY : src/VMWriter.cpp.i
+
+src/VMWriter.s: src/VMWriter.cpp.s
+.PHONY : src/VMWriter.s
+
+# target to generate assembly for a file
+src/VMWriter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Jack_Analyzer.dir\build.make CMakeFiles/Jack_Analyzer.dir/src/VMWriter.cpp.s
+.PHONY : src/VMWriter.cpp.s
+
 src/common.obj: src/common.cpp.obj
 .PHONY : src/common.obj
 
@@ -281,9 +305,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Jack_Analyzer
-	@echo ... VMWriter.obj
-	@echo ... VMWriter.i
-	@echo ... VMWriter.s
+	@echo ... src/CodeGen.obj
+	@echo ... src/CodeGen.i
+	@echo ... src/CodeGen.s
 	@echo ... src/CompilationEngine.obj
 	@echo ... src/CompilationEngine.i
 	@echo ... src/CompilationEngine.s
@@ -293,6 +317,9 @@ help:
 	@echo ... src/SymbolTable.obj
 	@echo ... src/SymbolTable.i
 	@echo ... src/SymbolTable.s
+	@echo ... src/VMWriter.obj
+	@echo ... src/VMWriter.i
+	@echo ... src/VMWriter.s
 	@echo ... src/common.obj
 	@echo ... src/common.i
 	@echo ... src/common.s

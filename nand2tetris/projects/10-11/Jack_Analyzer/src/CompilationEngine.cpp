@@ -1181,3 +1181,7 @@ void CompilationEngine::write_close_nonterminal(const string &non_terminal) {
     os.str("");
     os.clear();
 }
+
+string CompilationEngine::get_output_filename() {
+    return output_filename;
+}

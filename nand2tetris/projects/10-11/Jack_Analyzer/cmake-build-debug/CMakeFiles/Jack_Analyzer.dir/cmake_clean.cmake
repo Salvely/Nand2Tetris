@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Jack_Analyzer.dir/VMWriter.cpp.obj"
+  "CMakeFiles/Jack_Analyzer.dir/src/CodeGen.cpp.obj"
   "CMakeFiles/Jack_Analyzer.dir/src/CompilationEngine.cpp.obj"
   "CMakeFiles/Jack_Analyzer.dir/src/JackTokenizer.cpp.obj"
   "CMakeFiles/Jack_Analyzer.dir/src/SymbolTable.cpp.obj"
+  "CMakeFiles/Jack_Analyzer.dir/src/VMWriter.cpp.obj"
   "CMakeFiles/Jack_Analyzer.dir/src/common.cpp.obj"
   "CMakeFiles/Jack_Analyzer.dir/src/main.cpp.obj"
   "Jack_Analyzer.exe"

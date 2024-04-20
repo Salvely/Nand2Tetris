@@ -5,6 +5,7 @@
 #include <boost/filesystem.hpp>
 #include "JackTokenizer.h"
 #include "CompilationEngine.h"
+#include "CodeGen.h"
 
 using namespace boost::filesystem;
 using std::cout;
@@ -58,5 +59,14 @@ int compile_file(string filename) {
     engine_output_filename.replace(index, 5, ".xml");
     CompilationEngine engine(engine_input_filename, engine_output_filename);
     engine.compile_class();
+
+    // pass the output of compilation engine as the input of the next stage
+    string codegen_input_filename = engine.get_output_filename();
+    string codegen_output_filename = codegen_input_filename;
+    index = codegen_output_filename.find(".xml");
+    codegen_output_filename.replace(index, 4, ".vm");
+    CodeGen cg(codegen_input_filename, codegen_output_filename);
+    cg.generate_code();
+
     return 0;
 }

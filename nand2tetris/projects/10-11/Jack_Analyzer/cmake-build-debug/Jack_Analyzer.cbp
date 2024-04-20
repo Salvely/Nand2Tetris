@@ -88,10 +88,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/VMWriter.cpp">
+		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/include/VMWriter.h">
 			<Option target="Jack_Analyzer"/>
 		</Unit>
-		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/VMWriter.h">
+		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CodeGen.cpp">
+			<Option target="Jack_Analyzer"/>
+		</Unit>
+		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CodeGen.h">
 			<Option target="Jack_Analyzer"/>
 		</Unit>
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CompilationEngine.cpp">
@@ -101,6 +104,9 @@
 			<Option target="Jack_Analyzer"/>
 		</Unit>
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/SymbolTable.cpp">
+			<Option target="Jack_Analyzer"/>
+		</Unit>
+		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/VMWriter.cpp">
 			<Option target="Jack_Analyzer"/>
 		</Unit>
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/common.cpp">

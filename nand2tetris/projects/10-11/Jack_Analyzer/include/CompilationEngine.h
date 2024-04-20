@@ -161,6 +161,8 @@ public:
     void write_close_nonterminal(const string& non_terminal);
 
     int check_op(const string &token_type);
+
+    string get_output_filename();
 };
 
 #endif //JACK_ANALYZER_COMPILATIONENGINE_H
