@@ -88,13 +88,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/include/CodeGen.h">
+			<Option target="Jack_Analyzer"/>
+		</Unit>
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/include/VMWriter.h">
 			<Option target="Jack_Analyzer"/>
 		</Unit>
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CodeGen.cpp">
-			<Option target="Jack_Analyzer"/>
-		</Unit>
-		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CodeGen.h">
 			<Option target="Jack_Analyzer"/>
 		</Unit>
 		<Unit filename="E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CompilationEngine.cpp">

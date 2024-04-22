@@ -1154,7 +1154,6 @@ int CompilationEngine::check_op(const string &token_type) {
 
 int CompilationEngine::compile_type() {
     // type: int char boolean(keyword) | className(identifier)
-    // TODO: check if className valid
     if (check_token_valid("keyword", "int | char | boolean") == -1 && check_token_valid("identifier") == -1) {
         is.clear();
         cout.clear();

@@ -18,6 +18,11 @@ void VMWrite::write_pop(const string &segment, int index) {
 }
 
 void VMWrite::write_arithemetic(const string &command) {
+    //TODO: different VM for different command
+    if(command == "+") {
+        output << "add" << endl;
+        return;
+    }
     output << command << endl;
 }
 
@@ -48,4 +53,25 @@ void VMWrite::write_return() {
 void VMWrite::close() {
     output.close();
     input.close();
+}
+
+void VMWrite::set_this() {
+    output << "push argument 0" << endl;
+    output << "pop pointer 0" << endl;
+}
+
+void VMWrite::alloc_memory(int &size) {
+    output << "push constant " << size << endl;
+    output << "call Memory.alloc 1" << endl;
+    output << "pop pointer 0" << endl;
+}
+
+void VMWrite::constructor_return() {
+    output << "push pointer 0" << endl;
+    write_return();
+}
+
+void VMWrite::void_return() {
+    output << "push constant 0" << endl;
+    write_return();
 }

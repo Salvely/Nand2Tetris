@@ -86,6 +86,14 @@ public:
      * close the output file
      */
     void close();
+
+    void set_this();
+
+    void alloc_memory(int &size);
+
+    void constructor_return();
+
+    void void_return();
 };
 
 #endif //JACK_ANALYZER_VMWRITER_H

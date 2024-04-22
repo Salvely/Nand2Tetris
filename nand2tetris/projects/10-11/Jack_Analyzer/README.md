@@ -331,3 +331,13 @@ Todo:
 
 1. `compile_if()`中有else，else没打出来
 2. `compile_do()`中`()`中没有`expression`的情况没打出来(`do draw();`还有`do moveSquare();`)
+
+# Todo
+
+- [ ] Constructor 写法
+- [ ] function 写法
+- [ ] method 写法
+- [ ] return type 写法
+- [ ] subroutine_name 写法
+- [ ] parameter_list 写法
+- [ ] subroutine_body

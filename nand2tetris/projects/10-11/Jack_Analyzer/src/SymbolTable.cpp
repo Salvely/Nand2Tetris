@@ -163,3 +163,7 @@ void SymbolTable::subroutine_new_scope() {
     subroutine_st.push_front(new_list);
 }
 
+void SymbolTable::close_current_scope() {
+    subroutine_st.pop_front();
+}
+

@@ -53,6 +53,11 @@ public:
     void subroutine_new_scope();
 
     /**
+     * delete the current scope symbol table list
+     */
+    void close_current_scope();
+
+    /**
      * Defines a new identifier of a given name, type, and kind and assigns it a running index.
      * STATIC and FIELD identifiers have a class scope, while ARG and VAR identifiers have a
      * subroutine scope. Add the new identifier to the symbol table.
@@ -68,7 +73,7 @@ public:
      * @param kind kind of the identifier, such as FIELD/STATIC(class scope) or VAR/ARG(subroutine scope)
      * @return the number of variables of the given kind
      */
-    int var_count(const string& kind);
+    int var_count(const string &kind);
 
     /**
      * Returns the kind of the named identifier in the current scope.
@@ -76,21 +81,21 @@ public:
      * @param kind kind of the identifier, such as FIELD/STATIC(class scope) or VAR/ARG(subroutine scope)
      * @return the kind of the named identifier in the current scope
      */
-    string kind_of(const string& name);
+    string kind_of(const string &name);
 
     /**
      * Returns the type of the named identifier in the current scope.
      * @param name name of the identifier
      * @return the type of the named identifier in the current scope, such as int/String/boolean
      */
-    string type_of(const string& name);
+    string type_of(const string &name);
 
     /**
      * Returns the index assigned to the named identifier.
      * @param name name of the identifier
      * @return the index assigned to the named identifier
      */
-    int index_of(const string& name);
+    int index_of(const string &name);
 };
 
 #endif //JACK_ANALYZER_SYMBOLTABLE_H

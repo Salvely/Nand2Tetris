@@ -66,7 +66,7 @@ int compile_file(string filename) {
     index = codegen_output_filename.find(".xml");
     codegen_output_filename.replace(index, 4, ".vm");
     CodeGen cg(codegen_input_filename, codegen_output_filename);
-    cg.generate_code();
+    cg.generate_class();
 
     return 0;
 }
