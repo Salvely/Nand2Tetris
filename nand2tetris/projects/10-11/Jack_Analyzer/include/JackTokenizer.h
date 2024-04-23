@@ -109,6 +109,10 @@ public:
      * @return if a token is an illegal identifier
      */
     bool legal_identifier();
+
+    void split_words();
+
+    void split_words(string &w);
 };
 
 #endif //JACK_ANALYZER_JACKTOKENIZER_H

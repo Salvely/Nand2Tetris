@@ -60,7 +60,7 @@ int compile_file(string filename) {
     CompilationEngine engine(engine_input_filename, engine_output_filename);
     engine.compile_class();
 
-    // pass the output of compilation engine as the input of the next stage
+//     pass the output of compilation engine as the input of the next stage
     string codegen_input_filename = engine.get_output_filename();
     string codegen_output_filename = codegen_input_filename;
     index = codegen_output_filename.find(".xml");

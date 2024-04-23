@@ -83,7 +83,9 @@ void JackTokenizer::advance() {
     if (word.find('\n') != string::npos || word.empty()) {
         return;
     }
+    bool find_string = false;
     if (word.find("\"") != string::npos) {
+        find_string = true;
         if (std::count(word.begin(), word.end(), '\"') == 1) {
             string str;
             do {
@@ -93,22 +95,34 @@ void JackTokenizer::advance() {
         }
     }
 
-    if (word.length() == 1 && std::find(symbols.begin(), symbols.end(), word[0]) != symbols.end()) {
+    if (find_string) {
+        std::vector<string> single_words;
+        boost::split(single_words, word, boost::is_any_of("\""));
+        split_words(single_words[0]);
+        tokens.push_back("\"" + single_words[1] + "\"");
+        split_words(single_words[2]);
+    } else {
+        split_words(word);
+    }
+}
+
+void JackTokenizer::split_words(string &w) {
+    if (w.length() == 1 && std::find(symbols.begin(), symbols.end(), w[0]) != symbols.end()) {
         // there is only one symbol in the token
-        tokens.push_back(word);
+        tokens.push_back(w);
     } else {
         // there may be the combination of symbol and other elements
         // or just the element
         list<string> elems;
-        boost::split(elems, word, boost::algorithm::is_any_of(delims));
+        boost::split(elems, w, boost::algorithm::is_any_of(delims));
         if (elems.size() == 1) {
             // if no symbol contains
-            tokens.emplace_back(word);
+            tokens.emplace_back(w);
         } else {
             // if symbol contains
             size_t index = 0;
             size_t len = 0;
-            int total_len = word.length();
+            int total_len = w.length();
             for (string &elem: elems) {
                 if (!elem.empty()) {
                     tokens.emplace_back(elem);
@@ -118,7 +132,7 @@ void JackTokenizer::advance() {
                 }
                 index += len;
                 if (index < total_len) {
-                    tokens.emplace_back(string(1, word[index]));
+                    tokens.emplace_back(string(1, w[index]));
                     index += 1;
                 }
             }

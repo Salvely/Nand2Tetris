@@ -27,10 +27,10 @@ void SymbolTable::start_class() {
 void SymbolTable::define(string name, string type, string kind) {
     list<node_t> first_scope;
     // judge if there's the same kind of node
-    if (kind == "ARG" || kind == "VAR") {
+    if (kind == "arg" || kind == "var") {
         // search the subroutine symbol table with this kind
         first_scope = subroutine_st.front();
-    } else if (kind == "STATIC" || kind == "FIELD") {
+    } else if (kind == "static" || kind == "this") {
         // search the class symbol table with this kind
         first_scope = class_st.front();
     } else {
@@ -64,9 +64,9 @@ void SymbolTable::define(string name, string type, string kind) {
 
 int SymbolTable::var_count(const string &kind) {
     list<node_t> first_scope;
-    if (kind == "VAR" || kind == "ARG") {
+    if (kind == "var" || kind == "arg") {
         first_scope = subroutine_st.front();
-    } else if (kind == "FIELD" || kind == "STATIC") {
+    } else if (kind == "this" || kind == "static") {
         first_scope = class_st.front();
     } else {
         cerr << "Invalid kind detected: " << kind << endl;

@@ -101,6 +101,8 @@ void CompilationEngine::compile_class() {
         exit(1);
     }
     write_close_nonterminal("class");
+    input.close();
+    output.close();
 }
 
 int CompilationEngine::compile_class_var_dec() {

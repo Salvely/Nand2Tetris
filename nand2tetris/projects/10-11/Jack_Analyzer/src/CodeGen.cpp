@@ -6,23 +6,33 @@
 #include <iostream>
 #include "common.h"
 
+using std::cout;
 using std::cerr;
 using std::endl;
 using boost::property_tree::ptree;
 
 CodeGen::CodeGen(string input_filename, string output_filename) : writer(input, output) {
+
     input.open(input_filename);
     if (!input.is_open()) {
         cerr << "CodeGen: Input file " << input_filename << " open failed." << endl;
         exit(1);
     }
+
+//    std::streampos p = input.tellg();
+//    std::stringstream is;
+//    is << input.rdbuf();
+//    input.seekg(p);
+//
+//    cout << is.str();
+
     output.open(output_filename);
     if (!output.is_open()) {
         cerr << "CodeGen: Output file " << output_filename << " open failed." << endl;
         exit(1);
     }
 
-    read_xml(input_filename, xml_tree);
+    read_xml(input, xml_tree);
 
     branch_count = 0;
 }
