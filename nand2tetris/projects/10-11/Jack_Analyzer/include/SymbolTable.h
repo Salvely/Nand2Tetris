@@ -17,10 +17,18 @@ typedef struct same_kind_node {
     int index;
 } same_kind_node_t;
 
-typedef struct node {
+typedef struct same_kind_list {
     string kind;
-    list<same_kind_node_t> lst;
-} node_t;
+    list<same_kind_node_t> list;
+} same_kind_list;
+
+typedef struct scope_table {
+    list<same_kind_list> table_kind_list;
+} scope_table;
+
+typedef struct symbol_tables {
+    list<scope_table> scope_list;
+} symbol_tables;
 
 class SymbolTable {
 private:
@@ -28,8 +36,8 @@ private:
      * a symbol table is a nested linked list, the inner list contains a list
      * a node contains: name(identifier), type(int/boolean/String), kind(FIELD/STATIC/VAR/ARG), index
      */
-    list<list<node_t>> class_st;
-    list<list<node_t>> subroutine_st;
+    symbol_tables class_st;
+    symbol_tables subroutine_st;
 
 public:
     /**

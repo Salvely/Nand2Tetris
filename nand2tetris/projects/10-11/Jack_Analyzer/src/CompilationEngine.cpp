@@ -9,6 +9,8 @@
 #include <common.h>
 #include <vector>
 #include <algorithm>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/trim.hpp>
 
 using std::cerr;
 using std::endl;
@@ -949,6 +951,10 @@ int CompilationEngine::compile_subroutine_call() {
             input.seekg(read_header, std::ios_base::beg);
             is.clear();
         } else {
+//            iden.erase(std::remove_if(iden.begin(),
+//                                      iden.end(),
+//                                      [](unsigned char x) { return std::isspace(x); }),
+//                       iden.end());
             os << iden << endl;
             is.clear();
             stringbuf_clear();
@@ -994,6 +1000,10 @@ int CompilationEngine::compile_subroutine_call() {
         return -1;
     }
     if (ret != -1) {
+//        iden.erase(std::remove_if(iden.begin(),
+//                                  iden.end(),
+//                                  [](unsigned char x) { return std::isspace(x); }),
+//                   iden.end());
         os << iden << endl;
     }
     stringbuf_clear();
@@ -1118,6 +1128,11 @@ void CompilationEngine::next_line() {
 
 void CompilationEngine::stringbuf_clear() {
     cout.clear();
+//    std::vector<string> comp;
+//    boost::split(comp, line, "<<");
+//    for (string &s: comp) {
+//        boost::trim(s);
+//    }
     os << line << endl;
     output << os.str();
     os.str("");

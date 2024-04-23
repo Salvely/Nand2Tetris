@@ -334,10 +334,15 @@ Todo:
 
 # Todo
 
-- [ ] Constructor 写法
-- [ ] function 写法
-- [ ] method 写法
-- [ ] return type 写法
-- [ ] subroutine_name 写法
-- [ ] parameter_list 写法
-- [ ] subroutine_body
+- [x] SymbolTable重构+逻辑完善
+- [ ] VMWriter重构+逻辑完善
+- [ ] Codegen各个函数逻辑检查+修改完善
+- [ ] 系统编译
+- [ ] 结合Hardware simulator和OS Tools运行程序
+- [ ] Tiny bug修改
+
+# 实现注意
+
+- start_subroutine的位置需要修改
+- 多重嵌套的赋值需要在letStatement中补齐
+- 不确定Symbol table是否需要在define中实现已经定义的变量的替换（动态类型）

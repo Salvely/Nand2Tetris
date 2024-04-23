@@ -224,8 +224,6 @@ public:
 
     bool check_op(string &s);
 
-    static bool check_op(const string &s);
-
     static bool check_unary_op(const string &s);
 
     static bool check_keyword_constant(const string &s);
