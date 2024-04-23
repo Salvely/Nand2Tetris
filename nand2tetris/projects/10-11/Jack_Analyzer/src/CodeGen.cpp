@@ -632,26 +632,77 @@ void CodeGen::generate_term(const pt &term_tree) {
 }
 
 void CodeGen::generate_subroutine_call(pt::const_iterator &it) {
-    string iden = it->second.data();
+    int num; // subroutine arg num
+    if (it->first != "identifier") {
+        cerr << "No identifier detected in subroutine Call, generate_subroutine_call() failed." << endl;
+        exit(1);
+    }
+    string name = it->second.data(); // subroutineName / className / varName
     it++;
     if (it->second.data() == "(") {
         // subroutineName '(' expressionList ')' |
+        it++; // pass the ( symbol
+        if (it->first != "expressionList") {
+            cerr
+                    << "No expression list detected in subroutineName '(' expressionList ')' subroutine call, generate_subroutine_call() failed."
+                    << endl;
+            exit(1);
+        }
+        num = generate_expression_list(it->second);
+        it++; // pass the expressionList
+        it++; // pass the ) symbol
+        string function_name = className + "." + name;
+        writer.write_call(function_name, num);
     } else if (it->second.data() == ".") {
         // (className | varName) '.' subroutineName '(' expressionList ')'
+        it++; // pass the . symbol
+        if (it->first != "identifier") {
+            cerr
+                    << "No identifier subroutineName detected in (className | varName) '.' subroutineName '(' expressionList ')', generate_subroutine_call() failed."
+                    << endl;
+            exit(1);
+        }
+        string function_name = className + "." + it->second.data();
+
+        int arg;
+        if (name != className) {
+            arg = 1;
+            // varName: pass arg + 1 arguments in, while the first is varName
+            string kind = st.kind_of(name);
+            int index = st.index_of(name);
+            writer.write_push(kind, index);
+        } else {
+            arg = 0;
+            // className: pass arg arguments in, which are determined by expressionList
+        }
+        it++; // pass the subroutineName identifier
+        if (it->first != "symbol" || it->second.data() != "(") {
+            cerr
+                    << "No symbol ( detected in varName.subroutineName(expressionList), generate_subroutine_call() failed."
+                    << endl;
+            exit(1);
+        }
+        it++; // pass the ( symbol
+        arg += generate_expression_list(it->second);
+        it++;
+        writer.write_call(function_name, arg);
     } else {
         cerr << "No valid identifier ( or . detected, generate_subroutine_call() failed." << endl;
         exit(1);
     }
 }
 
-void CodeGen::generate_expression_list(const pt &expression_list_tree) {
+int CodeGen::generate_expression_list(const pt &expression_list_tree) {
+    int expression_num = 0;
     // parse the expression list tree
     for (auto &p: expression_list_tree.get_child("expressionList")) {
         // (expression (',' expression)* )?
         if (p.first == "keyword" && p.second.data() == "expression") {
             generate_expression(p.second);
+            expression_num += 1;
         }
     }
+    return expression_num;
 }
 
 bool CodeGen::check_op(const string &s) {

@@ -194,7 +194,7 @@ public:
     /**
      * @param expression_list_tree
      */
-    void generate_expression_list(const pt &expression_list_tree);
+    int generate_expression_list(const pt &expression_list_tree);
 
     /**
      * TODO:
