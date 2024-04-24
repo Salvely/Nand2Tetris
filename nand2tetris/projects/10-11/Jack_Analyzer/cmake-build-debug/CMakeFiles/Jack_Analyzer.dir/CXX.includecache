@@ -26,26 +26,6 @@ boost/property_tree/detail/file_parser_error.hpp
 boost/algorithm/string.hpp
 -
 
-../include/CompilationEngine.h
-string
--
-fstream
--
-sstream
--
-
-../include/JackTokenizer.h
-string
--
-fstream
--
-vector
--
-list
--
-common.h
-../include/common.h
-
 ../include/SymbolTable.h
 string
 -
@@ -76,15 +56,9 @@ iostream
 common.h
 E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/common.h
 
-E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/main.cpp
+E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/VMWriter.cpp
+VMWriter.h
+E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/VMWriter.h
 iostream
 -
-boost/filesystem.hpp
--
-JackTokenizer.h
-E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/JackTokenizer.h
-CompilationEngine.h
-E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CompilationEngine.h
-CodeGen.h
-E:/projects/Nand2Tetris/nand2tetris/projects/10-11/Jack_Analyzer/src/CodeGen.h
 
