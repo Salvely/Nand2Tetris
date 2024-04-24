@@ -20,7 +20,8 @@ sub
 pop this 13
 push constant 0
 pop this 14
-call Ball.show 0
+push pointer 0
+call Ball.show 1
 pop temp 0
 push pointer 0
 return
@@ -35,10 +36,12 @@ return
 function Ball.show 0
 push argument 0
 pop pointer 0
-push constant 1
+push constant 0
+not
 call Screen.setColor 1
 pop temp 0
-call Ball.draw 0
+push pointer 0
+call Ball.draw 1
 pop temp 0
 push constant 0
 return
@@ -48,7 +51,8 @@ pop pointer 0
 push constant 0
 call Screen.setColor 1
 pop temp 0
-call Ball.draw 0
+push pointer 0
+call Ball.draw 1
 pop temp 0
 push constant 0
 return
@@ -150,7 +154,8 @@ return
 function Ball.move 3
 push argument 0
 pop pointer 0
-call Ball.hide 0
+push pointer 0
+call Ball.hide 1
 pop temp 0
 push this 4
 push constant 0
@@ -299,7 +304,8 @@ pop this 1
 goto end_label19
 label false_label19
 label end_label19
-call Ball.show 0
+push pointer 0
+call Ball.show 1
 pop temp 0
 push this 14
 return
@@ -439,7 +445,8 @@ label end_label22
 label end_label22
 push local 0
 push local 1
-call Ball.setDestination 2
+push pointer 0
+call Ball.setDestination 3
 pop temp 0
 push constant 0
 return

@@ -251,7 +251,7 @@ void CodeGen::generate_let(const boost::optional<const pt &> &let_tree) {
      * pop [segment] [index]
      */
 
-    string type;
+    string type = "local";
     // parse the let statement
     // use manually iterator to iterate the content inside <letStatement> .. </letStatement>
     pt::const_iterator it = let_tree->begin();
@@ -266,9 +266,9 @@ void CodeGen::generate_let(const boost::optional<const pt &> &let_tree) {
         boost::trim(var_name);
         kind = st.kind_of(var_name);
         index = st.index_of(var_name);
-        type = st.type_of(var_name);
-        if (type == "Array")
-            writer.write_push(kind, index);
+//        type = st.type_of(var_name);
+//        if (type == "Array")
+
     } else {
         cerr << "varName not detected in generate_let(), compilation failed." << endl;
         exit(1);
@@ -278,6 +278,10 @@ void CodeGen::generate_let(const boost::optional<const pt &> &let_tree) {
     boost::trim(data);
     // ('[' expression ']')? -> 3. array index
     if (it->first == "symbol" && data == "[") {
+        // represent that var is an array index
+        writer.write_push(kind, index);
+        type = "Array";
+
         it++;
         generate_expression(it->second);
         it++;
@@ -325,8 +329,10 @@ void CodeGen::generate_let(const boost::optional<const pt &> &let_tree) {
     if (type != "Array")
         writer.write_pop(kind, index);
     else {
-        writer.write_pop("pointer", 1);
-        writer.write_push("that", 0);
+        if (type != "Array") {
+            writer.write_pop("pointer", 1);
+            writer.write_push("that", 0);
+        }
         writer.write_pop("temp", 0);
         writer.write_pop("pointer", 1);
         writer.write_push("temp", 0);
@@ -661,20 +667,22 @@ void CodeGen::generate_term(const pt &term_tree) {
     if (it->first == "integerConstant" || it->first == "stringConstant" ||
         check_keyword_constant(data)) {
         if (data == "true") {
-            writer.write_push("constant", 1);
-            writer.write_arithmetic("neg");
+            writer.write_push("constant", 0);
+            writer.write_arithmetic("~");
         } else if (data == "false" || data == "null") {
             writer.write_push("constant", 0);
         } else if (data == "this") {
             writer.write_push("pointer", 0);
         } else if (it->first == "stringConstant") {
-            int length = (int) it->second.data().length();
+            int length = (int) data.length() + 1;
             writer.write_push("constant", length);
             writer.write_call("String.new", 1);
-            for (const char &c: it->second.data()) {
+            for (const char &c: data) {
                 writer.write_push("constant", c);
                 writer.write_call("String.appendChar", 2);
             }
+            writer.write_push("constant", 32);
+            writer.write_call("String.appendChar", 2);
         } else
             output << "push constant " << data << endl;
         it++;
@@ -721,9 +729,9 @@ void CodeGen::generate_term(const pt &term_tree) {
 
                 writer.write_arithmetic("+");
 //                    output << "pop pointer 1" << endl;
-//                    writer.write_pop("pointer", 1);
+                writer.write_pop("pointer", 1);
 ////                    output << "push that 0" << endl;
-//                    writer.write_push("that", 0);
+                writer.write_push("that", 0);
             } else {
                 cerr << "No expression detected in term varName [ expression ], generate_term() failed." << endl;
                 exit(1);
@@ -763,7 +771,9 @@ void CodeGen::generate_subroutine_call(pt::const_iterator &it) {
         it++; // pass the expressionList
         it++; // pass the ) symbol
         string function_name = className + "." + name;
-        writer.write_call(function_name, num);
+        writer.write_push("pointer", 0);
+        writer.write_call(function_name, num + 1);
+
     } else if (data == ".") {
         // (className | varName) '.' subroutineName '(' expressionList ')'
         /**
@@ -783,7 +793,10 @@ void CodeGen::generate_subroutine_call(pt::const_iterator &it) {
         data = it->second.data();
         boost::trim(data);
         string function_name;
-        function_name = name + "." + data;
+        if (is_className)
+            function_name = name + "." + data;
+        else
+            function_name = st.type_of(name) + "." + data;
 
         int arg;
         if (!is_className) {

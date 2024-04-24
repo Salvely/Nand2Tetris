@@ -1,37 +1,17 @@
 function Main.main 3
-push local 0
 push constant 10
 call Array.new 1
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 1
+pop local 0
 push constant 5
 call Array.new 1
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 2
+pop local 1
 push constant 1
 call Array.new 1
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
+pop local 2
 push local 0
 push constant 3
 add
 push constant 2
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0
@@ -40,8 +20,6 @@ push local 0
 push constant 4
 add
 push constant 8
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0
@@ -50,8 +28,6 @@ push local 0
 push constant 5
 add
 push constant 4
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0
@@ -60,14 +36,16 @@ push local 1
 push local 0
 push constant 3
 add
+pop pointer 1
+push that 0
 add
 push local 0
 push constant 3
 add
-push constant 3
-add
 pop pointer 1
 push that 0
+push constant 3
+add
 pop temp 0
 pop pointer 1
 push temp 0
@@ -77,18 +55,28 @@ push local 1
 push local 0
 push constant 3
 add
+pop pointer 1
+push that 0
 add
+pop pointer 1
+push that 0
 add
 push local 0
 push local 0
 push constant 5
 add
+pop pointer 1
+push that 0
 add
+pop pointer 1
+push that 0
 push local 1
 push constant 7
 push local 0
 push constant 3
 add
+pop pointer 1
+push that 0
 sub
 push constant 2
 call Main.double 1
@@ -96,9 +84,9 @@ sub
 push constant 1
 add
 add
+pop pointer 1
+push that 0
 call Math.multiply 2
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0
@@ -107,26 +95,18 @@ push local 2
 push constant 0
 add
 push constant 0
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 2
 push local 2
 push constant 0
 add
 pop pointer 1
 push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 45
+pop local 2
+push constant 43
 call String.new 1
-push constant 32
-call String.appendChar 2
 push constant 84
 call String.appendChar 2
 push constant 101
@@ -213,21 +193,19 @@ push constant 58
 call String.appendChar 2
 push constant 32
 call String.appendChar 2
-push constant 32
-call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push local 1
 push constant 2
 add
+pop pointer 1
+push that 0
 call Output.printInt 1
 pop temp 0
 call Output.println 0
 pop temp 0
-push constant 46
+push constant 44
 call String.new 1
-push constant 32
-call String.appendChar 2
 push constant 84
 call String.appendChar 2
 push constant 101
@@ -316,21 +294,19 @@ push constant 58
 call String.appendChar 2
 push constant 32
 call String.appendChar 2
-push constant 32
-call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push local 0
 push constant 5
 add
+pop pointer 1
+push that 0
 call Output.printInt 1
 pop temp 0
 call Output.println 0
 pop temp 0
-push constant 45
+push constant 43
 call String.new 1
-push constant 32
-call String.appendChar 2
 push constant 84
 call String.appendChar 2
 push constant 101
@@ -417,8 +393,6 @@ push constant 58
 call String.appendChar 2
 push constant 32
 call String.appendChar 2
-push constant 32
-call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push local 2
@@ -426,14 +400,8 @@ call Output.printInt 1
 pop temp 0
 call Output.println 0
 pop temp 0
-push local 2
 push constant 0
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
+pop local 2
 push local 2
 push constant 0
 eq
@@ -444,68 +412,54 @@ push local 0
 push constant 10
 call Main.fill 2
 pop temp 0
-push local 2
 push local 0
 push constant 3
 add
 pop pointer 1
 push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
+pop local 2
 push local 2
 push constant 1
 add
 push constant 33
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 2
 push local 0
 push constant 7
 add
 pop pointer 1
 push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
+pop local 2
 push local 2
 push constant 1
 add
 push constant 77
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 1
 push local 0
 push constant 3
 add
 pop pointer 1
 push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
+pop local 1
 push local 1
 push constant 1
 add
 push local 1
 push constant 1
-add
-push local 2
-push constant 1
-add
 add
 pop pointer 1
 push that 0
+push local 2
+push constant 1
+add
+pop pointer 1
+push that 0
+add
 pop temp 0
 pop pointer 1
 push temp 0
@@ -513,10 +467,8 @@ pop that 0
 goto end_label1
 label false_label1
 label end_label1
-push constant 46
+push constant 44
 call String.new 1
-push constant 32
-call String.appendChar 2
 push constant 84
 call String.appendChar 2
 push constant 101
@@ -605,21 +557,19 @@ push constant 58
 call String.appendChar 2
 push constant 32
 call String.appendChar 2
-push constant 32
-call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push local 2
 push constant 1
 add
+pop pointer 1
+push that 0
 call Output.printInt 1
 pop temp 0
 call Output.println 0
 pop temp 0
-push constant 47
+push constant 45
 call String.new 1
-push constant 32
-call String.appendChar 2
 push constant 84
 call String.appendChar 2
 push constant 101
@@ -710,13 +660,13 @@ push constant 58
 call String.appendChar 2
 push constant 32
 call String.appendChar 2
-push constant 32
-call String.appendChar 2
 call Output.printString 1
 pop temp 0
 push local 1
 push constant 1
 add
+pop pointer 1
+push that 0
 call Output.printInt 1
 pop temp 0
 call Output.println 0
@@ -744,8 +694,6 @@ push argument 1
 add
 push constant 3
 call Array.new 1
-pop pointer 1
-push that 0
 pop temp 0
 pop pointer 1
 push temp 0

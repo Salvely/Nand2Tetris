@@ -8,7 +8,8 @@ push argument 1
 pop this 1
 push argument 2
 pop this 2
-call Square.draw 0
+push pointer 0
+call Square.draw 1
 pop temp 0
 push pointer 0
 return
@@ -23,7 +24,8 @@ return
 function Square.draw 0
 push argument 0
 pop pointer 0
-push constant 1
+push constant 0
+not
 call Screen.setColor 1
 pop temp 0
 push this 0
@@ -73,13 +75,15 @@ and
 not
 if-goto false_label40
 label true_label40
-call Square.erase 0
+push pointer 0
+call Square.erase 1
 pop temp 0
 push this 2
 push constant 2
 add
 pop this 2
-call Square.draw 0
+push pointer 0
+call Square.draw 1
 pop temp 0
 goto end_label40
 label false_label40
@@ -95,13 +99,15 @@ gt
 not
 if-goto false_label41
 label true_label41
-call Square.erase 0
+push pointer 0
+call Square.erase 1
 pop temp 0
 push this 2
 push constant 2
 sub
 pop this 2
-call Square.draw 0
+push pointer 0
+call Square.draw 1
 pop temp 0
 goto end_label41
 label false_label41
@@ -138,7 +144,8 @@ push this 1
 push constant 2
 sub
 pop this 1
-push constant 1
+push constant 0
+not
 call Screen.setColor 1
 pop temp 0
 push this 0
@@ -184,7 +191,8 @@ push this 1
 push constant 2
 add
 pop this 1
-push constant 1
+push constant 0
+not
 call Screen.setColor 1
 pop temp 0
 push this 0
@@ -236,7 +244,8 @@ push this 0
 push constant 2
 sub
 pop this 0
-push constant 1
+push constant 0
+not
 call Screen.setColor 1
 pop temp 0
 push this 0
@@ -282,7 +291,8 @@ push this 0
 push constant 2
 add
 pop this 0
-push constant 1
+push constant 0
+not
 call Screen.setColor 1
 pop temp 0
 push this 0

@@ -23,7 +23,7 @@ pop this 1
 push this 1
 push constant 400
 push constant 0
-call ball.setDestination 3
+call Ball.setDestination 3
 pop temp 0
 push constant 0
 push constant 238
@@ -35,10 +35,8 @@ push constant 22
 push constant 0
 call Output.moveCursor 2
 pop temp 0
-push constant 10
+push constant 9
 call String.new 1
-push constant 32
-call String.appendChar 2
 push constant 83
 call String.appendChar 2
 push constant 99
@@ -73,10 +71,10 @@ function PongGame.dispose 0
 push argument 0
 pop pointer 0
 push this 0
-call bat.dispose 1
+call Bat.dispose 1
 pop temp 0
 push this 1
-call ball.dispose 1
+call Ball.dispose 1
 pop temp 0
 push pointer 0
 call Memory.deAlloc 1
@@ -111,9 +109,10 @@ if-goto end_while_label28
 call Keyboard.keyPressed 0
 pop local 0
 push this 0
-call bat.move 1
+call Bat.move 1
 pop temp 0
-call PongGame.moveBall 0
+push pointer 0
+call PongGame.moveBall 1
 pop temp 0
 push constant 50
 call Sys.wait 1
@@ -128,7 +127,7 @@ if-goto false_label29
 label true_label29
 push this 0
 push constant 1
-call bat.setDirection 2
+call Bat.setDirection 2
 pop temp 0
 goto end_label29
 label false_label29
@@ -140,7 +139,7 @@ if-goto false_label29
 label true_label29
 push this 0
 push constant 2
-call bat.setDirection 2
+call Bat.setDirection 2
 pop temp 0
 goto end_label29
 label false_label29
@@ -150,7 +149,8 @@ eq
 not
 if-goto false_label29
 label true_label29
-push constant 1
+push constant 0
+not
 pop this 3
 goto end_label29
 label false_label29
@@ -170,9 +170,10 @@ if-goto end_while_label32
 call Keyboard.keyPressed 0
 pop local 0
 push this 0
-call bat.move 1
+call Bat.move 1
 pop temp 0
-call PongGame.moveBall 0
+push pointer 0
+call PongGame.moveBall 1
 pop temp 0
 push constant 50
 call Sys.wait 1
@@ -189,10 +190,8 @@ push constant 10
 push constant 27
 call Output.moveCursor 2
 pop temp 0
-push constant 11
+push constant 10
 call String.new 1
-push constant 32
-call String.appendChar 2
 push constant 71
 call String.appendChar 2
 push constant 97
@@ -300,7 +299,7 @@ sub
 pop this 6
 push this 0
 push this 6
-call bat.setWidth 2
+call Bat.setWidth 2
 pop temp 0
 push this 4
 push constant 1
@@ -321,7 +320,7 @@ label false_label35
 label end_label35
 push this 1
 push local 0
-call ball.bounce 2
+call Ball.bounce 2
 pop temp 0
 goto end_label35
 label false_label35

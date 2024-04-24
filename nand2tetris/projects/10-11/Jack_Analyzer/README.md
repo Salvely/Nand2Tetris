@@ -337,9 +337,9 @@ Todo:
 - [x] Codegen各个函数逻辑检查+修改完善
 - [ ] 系统测试
     - [x] Seven: 普通加法测试
-    - [ ] Average： 求平均值测试，带函数
+    - [x] Average： 求平均值测试，带函数
     - [ ] ConvertToBin：访存测试
-    - [ ] ComplexArrays：嵌套数组测试（着重于let和term）
+    - [x] ComplexArrays：嵌套数组测试（着重于let和term）
     - [ ] Pong（系统集成测试）
     - [ ] Square（系统集成测试）
 - [ ] 结合Hardware simulator和OS Tools运行程序
@@ -350,3 +350,12 @@ Todo:
 - start_subroutine的位置需要修改(完成)
 - 多重嵌套的赋值需要在letStatement中补齐
 - 不确定Symbol table是否需要在define中实现已经定义的变量的替换（动态类型）
+
+# Average测试问题
+
+- 字符串输入太多
+- 当返回单个单位时，无需使用那些指针
+- Push local 0是哪里来的？
+- 直接Pop local 0即可
+- 无需再次设置that指针
+- that指针什么时候设置会有些问题
