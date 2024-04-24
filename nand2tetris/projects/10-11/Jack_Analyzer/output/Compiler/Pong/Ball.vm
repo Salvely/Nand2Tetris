@@ -98,6 +98,7 @@ call Math.abs 1
 pop local 1
 push local 0
 push local 1
+lt
 pop this 7
 push this 7
 not
@@ -111,17 +112,21 @@ push local 2
 pop local 1
 push this 1
 push argument 2
+lt
 pop this 8
 push this 0
 push argument 1
+lt
 pop this 9
 goto end_label8
 label false_label8
 push this 0
 push argument 1
+lt
 pop this 8
 push this 1
 push argument 2
+lt
 pop this 9
 label end_label8
 push constant 2
@@ -149,6 +154,7 @@ call Ball.hide 0
 pop temp 0
 push this 4
 push constant 0
+lt
 not
 if-goto false_label9
 label true_label9
@@ -239,6 +245,7 @@ label end_label14
 label end_label13
 push this 0
 push this 10
+gt
 not
 not
 if-goto false_label16
@@ -252,6 +259,7 @@ label false_label16
 label end_label16
 push this 0
 push this 11
+lt
 not
 not
 if-goto false_label17
@@ -265,6 +273,7 @@ label false_label17
 label end_label17
 push this 1
 push this 12
+gt
 not
 not
 if-goto false_label18
@@ -278,6 +287,7 @@ label false_label18
 label end_label18
 push this 1
 push this 13
+lt
 not
 not
 if-goto false_label19
@@ -316,6 +326,7 @@ goto end_label20
 label false_label20
 push this 2
 push constant 0
+lt
 not
 push argument 1
 push constant 1
@@ -323,6 +334,7 @@ eq
 and
 push this 2
 push constant 0
+lt
 push argument 1
 push constant 1
 neg

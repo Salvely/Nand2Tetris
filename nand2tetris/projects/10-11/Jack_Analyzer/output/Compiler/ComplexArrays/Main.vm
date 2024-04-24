@@ -732,6 +732,7 @@ function Main.fill 3
 label while_label2
 push argument 1
 push constant 0
+gt
 not
 if-goto end_while_label2
 push argument 1

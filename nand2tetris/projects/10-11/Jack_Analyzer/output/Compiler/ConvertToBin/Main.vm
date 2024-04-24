@@ -29,6 +29,7 @@ call Main.nextMask 1
 pop local 0
 push local 1
 push constant 16
+gt
 not
 not
 if-goto false_label3
@@ -86,6 +87,7 @@ function Main.fillMemory 4
 label while_label7
 push argument 1
 push constant 0
+gt
 not
 if-goto end_while_label7
 push argument 0

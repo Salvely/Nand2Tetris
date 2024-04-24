@@ -61,7 +61,7 @@ string get_key(TOKEN_TYPE type);
 
 static int indent = 0;
 
-static std::vector<string> ops = {"+", "-", "*", "/", "&", "|", "&lt;", "&gt;", "="};
+static std::vector<string> ops = {"+", "-", "*", "/", "&", "|", "<", ">", "="};
 
 extern std::vector<string> class_type;
 

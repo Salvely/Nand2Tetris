@@ -28,9 +28,9 @@ void VMWrite::write_arithmetic(const string &command, const string &type) {
         output << "not" << endl;
     } else if (command == "=") {
         output << "eq" << endl;
-    } else if (command == "&gt;") {
+    } else if (command == ">") {
         output << "gt" << endl;
-    } else if (command == "&lt;") {
+    } else if (command == "<") {
         output << "lt" << endl;
     } else if (command == "&") {
         output << "and" << endl;

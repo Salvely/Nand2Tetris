@@ -227,6 +227,7 @@ push this 1
 pop this 2
 push this 2
 push constant 0
+gt
 push this 2
 push this 5
 eq
@@ -255,8 +256,10 @@ if-goto false_label35
 label true_label35
 push local 1
 push local 4
+gt
 push local 2
 push local 3
+lt
 or
 pop this 3
 push this 3
@@ -268,6 +271,7 @@ push local 4
 push local 1
 push constant 10
 add
+lt
 not
 if-goto false_label35
 label true_label35
@@ -280,6 +284,7 @@ push local 3
 push local 2
 push constant 10
 sub
+gt
 not
 if-goto false_label35
 label true_label35

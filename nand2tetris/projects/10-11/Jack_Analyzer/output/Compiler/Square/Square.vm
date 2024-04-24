@@ -63,10 +63,12 @@ push this 1
 push this 2
 add
 push constant 254
+lt
 push this 0
 push this 2
 add
 push constant 510
+lt
 and
 not
 if-goto false_label40
@@ -89,6 +91,7 @@ push argument 0
 pop pointer 0
 push this 2
 push constant 2
+gt
 not
 if-goto false_label41
 label true_label41
@@ -110,6 +113,7 @@ push argument 0
 pop pointer 0
 push this 1
 push constant 1
+gt
 not
 if-goto false_label42
 label true_label42
@@ -159,6 +163,7 @@ push this 1
 push this 2
 add
 push constant 254
+lt
 not
 if-goto false_label43
 label true_label43
@@ -206,6 +211,7 @@ push argument 0
 pop pointer 0
 push this 0
 push constant 1
+gt
 not
 if-goto false_label44
 label true_label44
@@ -255,6 +261,7 @@ push this 0
 push this 2
 add
 push constant 510
+lt
 not
 if-goto false_label45
 label true_label45

@@ -104,6 +104,7 @@ sub
 pop this 0
 push this 0
 push constant 0
+lt
 not
 if-goto false_label25
 label true_label25
@@ -154,6 +155,7 @@ push this 0
 push this 2
 add
 push constant 511
+gt
 not
 if-goto false_label26
 label true_label26
