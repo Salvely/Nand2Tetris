@@ -25,20 +25,20 @@ void SymbolTable::start_class() {
 }
 
 void SymbolTable::define(string name, string type, string kind) {
-    scope_table first_scope;
+    scope_table *first_scope;
     // judge if there's the same kind of node
-    if (kind == "arg" || kind == "var") {
+    if (kind == "argument" || kind == "local") {
         // search the subroutine symbol table with this kind
-        first_scope = subroutine_st.scope_list.front();
+        first_scope = &subroutine_st.scope_list.front();
     } else if (kind == "static" || kind == "this") {
         // search the class symbol table with this kind
-        first_scope = class_st.scope_list.front();
+        first_scope = &class_st.scope_list.front();
     } else {
         cerr << "Invalid kind detected: " << kind << endl;
         exit(1);
     }
 
-    for (same_kind_list &l: first_scope.table_kind_list) {
+    for (same_kind_list &l: first_scope->table_kind_list) {
         if (l.kind == kind) {
             same_kind_node n{.name = name, .type = type, .index = (int) l.list.size()};
             l.list.push_back(n);
@@ -51,13 +51,37 @@ void SymbolTable::define(string name, string type, string kind) {
     same_kind_list l;
     l.kind = kind;
     l.list.push_back(n);
-    first_scope.table_kind_list.push_back(l);
+    first_scope->table_kind_list.push_back(l);
 }
+
+//bool SymbolTable::find_var(const string &name) {
+//    for (scope_table &st: subroutine_st.scope_list) {
+//        for (same_kind_list &l: st.table_kind_list) {
+//            for (same_kind_node &n: l.list) {
+//                if (n.name == name) {
+//                    return true;
+//                }
+//            }
+//        }
+//    }
+//
+//    for (scope_table &st: class_st.scope_list) {
+//        for (same_kind_list &l: st.table_kind_list) {
+//            for (same_kind_node &n: l.list) {
+//                if (n.name == name) {
+//                    return true;
+//                }
+//            }
+//        }
+//    }
+//
+//    return false;
+//}
 
 int SymbolTable::var_count(const string &kind) {
     scope_table first_scope;
     // judge if there's the same kind of node
-    if (kind == "arg" || kind == "var") {
+    if (kind == "argument" || kind == "local") {
         // search the subroutine symbol table with this kind
         first_scope = subroutine_st.scope_list.front();
     } else if (kind == "static" || kind == "this") {
@@ -79,18 +103,22 @@ int SymbolTable::var_count(const string &kind) {
 }
 
 string SymbolTable::kind_of(const string &name) {
-    for (same_kind_list &l: subroutine_st.scope_list.front().table_kind_list) {
-        for (same_kind_node &n: l.list) {
-            if (n.name == name) {
-                return l.kind;
+    for (scope_table &st: subroutine_st.scope_list) {
+        for (same_kind_list &l: st.table_kind_list) {
+            for (same_kind_node &n: l.list) {
+                if (n.name == name) {
+                    return l.kind;
+                }
             }
         }
     }
 
-    for (same_kind_list &l: class_st.scope_list.front().table_kind_list) {
-        for (same_kind_node &n: l.list) {
-            if (n.name == name) {
-                return l.kind;
+    for (scope_table &st: class_st.scope_list) {
+        for (same_kind_list &l: st.table_kind_list) {
+            for (same_kind_node &n: l.list) {
+                if (n.name == name) {
+                    return l.kind;
+                }
             }
         }
     }
@@ -100,18 +128,22 @@ string SymbolTable::kind_of(const string &name) {
 }
 
 string SymbolTable::type_of(const string &name) {
-    for (same_kind_list &l: subroutine_st.scope_list.front().table_kind_list) {
-        for (same_kind_node &n: l.list) {
-            if (n.name == name) {
-                return n.type;
+    for (scope_table &st: subroutine_st.scope_list) {
+        for (same_kind_list &l: st.table_kind_list) {
+            for (same_kind_node &n: l.list) {
+                if (n.name == name) {
+                    return n.type;
+                }
             }
         }
     }
 
-    for (same_kind_list &l: class_st.scope_list.front().table_kind_list) {
-        for (same_kind_node &n: l.list) {
-            if (n.name == name) {
-                return n.type;
+    for (scope_table &st: class_st.scope_list) {
+        for (same_kind_list &l: st.table_kind_list) {
+            for (same_kind_node &n: l.list) {
+                if (n.name == name) {
+                    return n.type;
+                }
             }
         }
     }
@@ -120,18 +152,22 @@ string SymbolTable::type_of(const string &name) {
 }
 
 int SymbolTable::index_of(const string &name) {
-    for (same_kind_list &l: subroutine_st.scope_list.front().table_kind_list) {
-        for (same_kind_node &n: l.list) {
-            if (n.name == name) {
-                return n.index;
+    for (scope_table &st: subroutine_st.scope_list) {
+        for (same_kind_list &l: st.table_kind_list) {
+            for (same_kind_node &n: l.list) {
+                if (n.name == name) {
+                    return n.index;
+                }
             }
         }
     }
 
-    for (same_kind_list &l: class_st.scope_list.front().table_kind_list) {
-        for (same_kind_node &n: l.list) {
-            if (n.name == name) {
-                return n.index;
+    for (scope_table &st: class_st.scope_list) {
+        for (same_kind_list &l: st.table_kind_list) {
+            for (same_kind_node &n: l.list) {
+                if (n.name == name) {
+                    return n.index;
+                }
             }
         }
     }

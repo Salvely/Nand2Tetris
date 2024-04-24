@@ -42,8 +42,8 @@ private:
 
     pt xml_tree;
 
-    int branch_count;
-
+    int field_num;
+    int local_num;
 public:
     CodeGen(string input_filename, string output_filename);
 
@@ -97,11 +97,11 @@ public:
      */
     void generate_statements(const pt &statements_tree);
 
-    /**
-     * generate different type of statement according to the statement tag
-     * @param statement_tree
-     */
-    void generate_statement(const pt &statement_tree);
+//    /**
+//     * generate different type of statement according to the statement tag
+//     * @param statement_tree
+//     */
+//    void generate_statement(const pt &statement_tree);
 
     /**
      * format: let varName ([ expression ])? = expression

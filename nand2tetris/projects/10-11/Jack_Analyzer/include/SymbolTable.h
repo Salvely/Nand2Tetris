@@ -104,6 +104,8 @@ public:
      * @return the index assigned to the named identifier
      */
     int index_of(const string &name);
+
+    bool find_var(const string &name);
 };
 
 #endif //JACK_ANALYZER_SYMBOLTABLE_H

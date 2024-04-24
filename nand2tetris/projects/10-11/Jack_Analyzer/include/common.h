@@ -61,5 +61,10 @@ string get_key(TOKEN_TYPE type);
 
 static int indent = 0;
 
-static std::vector<char> ops = {'+', '-', '*', '/', '&', '|', '<', '>', '='};
+static std::vector<string> ops = {"+", "-", "*", "/", "&", "|", "&lt;", "&gt;", "="};
+
+extern std::vector<string> class_type;
+
+static int branch_count = 0;
+
 #endif //JACK_ANALYZER_COMMON_H

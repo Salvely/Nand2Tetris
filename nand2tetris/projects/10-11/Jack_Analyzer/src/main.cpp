@@ -6,11 +6,14 @@
 #include "JackTokenizer.h"
 #include "CompilationEngine.h"
 #include "CodeGen.h"
+#include "common.h"
 
 using namespace boost::filesystem;
 using std::cout;
 using std::endl;
 using std::cerr;
+
+std::vector<string> class_type = {"Math", "Memory", "Screen", "Output", "Keyboard", "String", "Array", "Sys"};
 
 int compile_file(string filename);
 
@@ -25,12 +28,31 @@ int main(int argc, char *argv[]) {
         string input_filename;
         if (is_directory(p)) {
             recursive_directory_iterator iter(p);
+            // manually add the className to the class_type
             for (auto &dir_Entry: iter) {
+                if (!dir_Entry.is_directory() && dir_Entry.path().string().find(".jack") != string::npos) {
+                    string class_name = dir_Entry.path().stem().string();
+                    class_type.push_back(class_name);
+                }
+            }
+
+            recursive_directory_iterator iter1(p);
+            for (auto &dir_Entry: iter1) {
                 if (!dir_Entry.is_directory() && dir_Entry.path().string().find(".jack") != string::npos) {
                     compile_file(dir_Entry.path().string());
                 }
             }
         } else {
+            path parent_path = p.parent_path();
+            recursive_directory_iterator iter(parent_path);
+            // manually add the className to the class_type
+            for (auto &dir_Entry: iter) {
+                if (!dir_Entry.is_directory() && dir_Entry.path().string().find(".jack") != string::npos) {
+                    string class_name = dir_Entry.path().stem().string();
+                    class_type.push_back(class_name);
+                }
+            }
+//s
             compile_file(p.string());
         }
     } else {

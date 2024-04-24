@@ -29,38 +29,38 @@ public:
      * @param segment CONST, ARG, LOCAL, STATIC, THIS, THAT, POINTER, TEMP
      * @param index
      */
-    void write_push(const string& segment, int index);
+    void write_push(const string &segment, int index);
 
     /**
      *
      * @param segment CONST, ARG, LOCAL, STATIC, THIS, THAT, POINTER, TEMP
      * @param index
      */
-    void write_pop(const string& segment, int index);
+    void write_pop(const string &segment, int index);
 
     /**
      * write a VM arithmetic command
      * @param command ADD, SUB, NEG, EQ, GT, LT, AND, OR, NOT
      */
-    void write_arithemetic(const string& command);
+    void write_arithmetic(const string &command, const string& type = "");
 
     /**
      * write a VM label command
      * @param label
      */
-    void write_label(const string& label);
+    void write_label(const string &label);
 
     /**
      * write a VM goto command
      * @param label
      */
-    void write_goto(const string& label);
+    void write_goto(const string &label);
 
     /**
      * write a VM if-goto command
      * @param label
      */
-    void write_if(const string& label);
+    void write_if(const string &label);
 
 
     /**
@@ -68,14 +68,14 @@ public:
      * @param function_name
      * @param arg_num
      */
-    void write_call(const string& function_name, int arg_num);
+    void write_call(const string &function_name, int arg_num);
 
     /**
      * write a VM function command
      * @param function_name
      * @param local_num
      */
-    void write_function(const string& function_name, int local_num);
+    void write_function(const string &function_name, int local_num);
 
     /**
      * write a VM return command

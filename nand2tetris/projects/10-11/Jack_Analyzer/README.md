@@ -293,17 +293,15 @@ Jack 有 8 个标准库，分别是：
 
 Todo:
 
-1. 测试
-2. Codegen完成
-3. OS部分完成
-4. CS61A完成
-5. Python实现Scheme解释器
-6. MIT 6.037完成
-7. Scheme实现Scheme解释器
-8. SICP阅读
-9. Jack语言实现Scheme解释器
-10. 15-213完成
-11. 其他系统入门课程完成
+1. OS部分完成
+2. CS61A完成
+3. Python实现Scheme解释器
+4. MIT 6.037完成
+5. Scheme实现Scheme解释器
+6. SICP阅读
+7. Jack语言实现Scheme解释器
+8. 15-213完成
+9. 其他系统入门课程完成
 
 - [ ] subroutine_dec
 - [x] parameter_list
@@ -335,14 +333,20 @@ Todo:
 # Todo
 
 - [x] SymbolTable重构+逻辑完善
-- [ ] VMWriter重构+逻辑完善
-- [ ] Codegen各个函数逻辑检查+修改完善
-- [ ] 系统编译
+- [x] VMWriter重构+逻辑完善
+- [x] Codegen各个函数逻辑检查+修改完善
+- [ ] 系统测试
+    - [x] Seven: 普通加法测试
+    - [ ] Average： 求平均值测试，带函数
+    - [ ] ConvertToBin：访存测试
+    - [ ] ComplexArrays：嵌套数组测试（着重于let和term）
+    - [ ] Pong（系统集成测试）
+    - [ ] Square（系统集成测试）
 - [ ] 结合Hardware simulator和OS Tools运行程序
 - [ ] Tiny bug修改
 
 # 实现注意
 
-- start_subroutine的位置需要修改
+- start_subroutine的位置需要修改(完成)
 - 多重嵌套的赋值需要在letStatement中补齐
 - 不确定Symbol table是否需要在define中实现已经定义的变量的替换（动态类型）

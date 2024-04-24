@@ -17,13 +17,30 @@ void VMWrite::write_pop(const string &segment, int index) {
     output << "pop " << segment << " " << index << endl;
 }
 
-void VMWrite::write_arithemetic(const string &command) {
-    //TODO: different VM for different command
-    if(command == "+") {
+void VMWrite::write_arithmetic(const string &command, const string &type) {
+    if (command == "+") {
         output << "add" << endl;
-        return;
+    } else if (command == "-" && type == "binary") {
+        output << "sub" << endl;
+    } else if (command == "-" && type == "unary") {
+        output << "neg" << endl;
+    } else if (command == "~") {
+        output << "not" << endl;
+    } else if (command == "=") {
+        output << "eq" << endl;
+    } else if (command == "&gt;") {
+        output << "gt" << endl;
+    } else if (command == "&lt;") {
+        output << "lt" << endl;
+    } else if (command == "&") {
+        output << "and" << endl;
+    } else if (command == "|") {
+        output << "or" << endl;
+    } else if (command == "*") {
+        output << "call Math.multiply 2" << endl;
+    } else if (command == "/") {
+        output << "call Math.divide 2" << endl;
     }
-    output << command << endl;
 }
 
 void VMWrite::write_label(const string &label) {
@@ -61,9 +78,11 @@ void VMWrite::set_this() {
 }
 
 void VMWrite::alloc_memory(int &size) {
-    output << "push constant " << size << endl;
-    output << "call Memory.alloc 1" << endl;
-    output << "pop pointer 0" << endl;
+    if (size != 0) {
+        output << "push constant " << size << endl;
+        output << "call Memory.alloc 1" << endl;
+        output << "pop pointer 0" << endl;
+    }
 }
 
 void VMWrite::constructor_return() {
