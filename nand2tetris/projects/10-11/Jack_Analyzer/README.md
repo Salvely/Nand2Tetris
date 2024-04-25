@@ -342,8 +342,6 @@ Todo:
     - [x] ComplexArrays：嵌套数组测试（着重于let和term）
     - [ ] Pong（系统集成测试）
     - [x] Square（系统集成测试）
-- [ ] 结合Hardware simulator和OS Tools运行程序
-- [ ] Tiny bug修改
 
 # 实现注意
 

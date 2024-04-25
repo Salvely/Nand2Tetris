@@ -102,8 +102,8 @@ push this 4
 push constant 1
 eq
 not
-if-goto false_label25
-label true_label25
+if-goto false_label17
+label true_label17
 push this 0
 push constant 4
 sub
@@ -112,13 +112,13 @@ push this 0
 push constant 0
 lt
 not
-if-goto false_label26
-label true_label26
+if-goto false_label18
+label true_label18
 push constant 0
 pop this 0
-goto end_label26
-label false_label26
-label end_label26
+goto end_label18
+label false_label18
+label end_label18
 push constant 0
 call Screen.setColor 1
 pop temp 0
@@ -152,8 +152,8 @@ push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
-goto end_label25
-label false_label25
+goto end_label17
+label false_label17
 push this 0
 push constant 4
 add
@@ -164,15 +164,15 @@ add
 push constant 511
 gt
 not
-if-goto false_label27
-label true_label27
+if-goto false_label19
+label true_label19
 push constant 511
 push this 2
 sub
 pop this 0
-goto end_label27
-label false_label27
-label end_label27
+goto end_label19
+label false_label19
+label end_label19
 push constant 0
 call Screen.setColor 1
 pop temp 0
@@ -206,6 +206,6 @@ push this 3
 add
 call Screen.drawRectangle 4
 pop temp 0
-label end_label25
+label end_label17
 push constant 0
 return

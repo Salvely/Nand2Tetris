@@ -767,11 +767,11 @@ void CodeGen::generate_subroutine_call(pt::const_iterator &it) {
                     << endl;
             exit(1);
         }
+        writer.write_push("pointer", 0);
         num = generate_expression_list(it->second);
         it++; // pass the expressionList
         it++; // pass the ) symbol
         string function_name = className + "." + name;
-        writer.write_push("pointer", 0);
         writer.write_call(function_name, num + 1);
 
     } else if (data == ".") {
