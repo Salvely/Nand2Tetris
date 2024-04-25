@@ -106,8 +106,8 @@ lt
 pop this 7
 push this 7
 not
-if-goto false_label0
-label true_label0
+if-goto false_label8
+label true_label8
 push local 0
 pop local 2
 push local 1
@@ -122,8 +122,8 @@ push this 0
 push argument 1
 lt
 pop this 9
-goto end_label0
-label false_label0
+goto end_label8
+label false_label8
 push this 0
 push argument 1
 lt
@@ -132,7 +132,7 @@ push this 1
 push argument 2
 lt
 pop this 9
-label end_label0
+label end_label8
 push constant 2
 push local 1
 call Math.multiply 2
@@ -161,149 +161,149 @@ push this 4
 push constant 0
 lt
 not
-if-goto false_label1
-label true_label1
+if-goto false_label9
+label true_label9
 push this 4
 push this 5
 add
 pop this 4
-goto end_label1
-label false_label1
+goto end_label9
+label false_label9
 push this 4
 push this 6
 add
 pop this 4
 push this 9
 not
-if-goto false_label2
-label true_label2
+if-goto false_label10
+label true_label10
 push this 7
 not
-if-goto false_label3
-label true_label3
+if-goto false_label11
+label true_label11
 push this 0
 push constant 4
 add
 pop this 0
-goto end_label3
-label false_label3
+goto end_label11
+label false_label11
 push this 1
 push constant 4
 add
 pop this 1
-label end_label3
-goto end_label2
-label false_label2
+label end_label11
+goto end_label10
+label false_label10
 push this 7
 not
-if-goto false_label4
-label true_label4
+if-goto false_label12
+label true_label12
 push this 0
 push constant 4
 sub
 pop this 0
-goto end_label4
-label false_label4
+goto end_label12
+label false_label12
 push this 1
 push constant 4
 sub
 pop this 1
-label end_label4
-label end_label2
-label end_label1
+label end_label12
+label end_label10
+label end_label9
 push this 8
 not
-if-goto false_label5
-label true_label5
+if-goto false_label13
+label true_label13
 push this 7
 not
-if-goto false_label6
-label true_label6
+if-goto false_label14
+label true_label14
 push this 1
 push constant 4
 add
 pop this 1
-goto end_label6
-label false_label6
+goto end_label14
+label false_label14
 push this 0
 push constant 4
 add
 pop this 0
-label end_label6
-goto end_label5
-label false_label5
+label end_label14
+goto end_label13
+label false_label13
 push this 7
 not
-if-goto false_label7
-label true_label7
+if-goto false_label15
+label true_label15
 push this 1
 push constant 4
 sub
 pop this 1
-goto end_label7
-label false_label7
+goto end_label15
+label false_label15
 push this 0
 push constant 4
 sub
 pop this 0
-label end_label7
-label end_label5
+label end_label15
+label end_label13
 push this 0
 push this 10
 gt
 not
 not
-if-goto false_label8
-label true_label8
+if-goto false_label16
+label true_label16
 push constant 1
 pop this 14
 push this 10
 pop this 0
-goto end_label8
-label false_label8
-label end_label8
+goto end_label16
+label false_label16
+label end_label16
 push this 0
 push this 11
 lt
 not
 not
-if-goto false_label9
-label true_label9
+if-goto false_label17
+label true_label17
 push constant 2
 pop this 14
 push this 11
 pop this 0
-goto end_label9
-label false_label9
-label end_label9
+goto end_label17
+label false_label17
+label end_label17
 push this 1
 push this 12
 gt
 not
 not
-if-goto false_label10
-label true_label10
+if-goto false_label18
+label true_label18
 push constant 3
 pop this 14
 push this 12
 pop this 1
-goto end_label10
-label false_label10
-label end_label10
+goto end_label18
+label false_label18
+label end_label18
 push this 1
 push this 13
 lt
 not
 not
-if-goto false_label11
-label true_label11
+if-goto false_label19
+label true_label19
 push constant 4
 pop this 14
 push this 13
 pop this 1
-goto end_label11
-label false_label11
-label end_label11
+goto end_label19
+label false_label19
+label end_label19
 push pointer 0
 call Ball.show 1
 pop temp 0
@@ -324,12 +324,12 @@ push argument 1
 push constant 0
 eq
 not
-if-goto false_label12
-label true_label12
+if-goto false_label20
+label true_label20
 push constant 10
 pop local 4
-goto end_label12
-label false_label12
+goto end_label20
+label false_label20
 push this 2
 push constant 0
 lt
@@ -348,22 +348,22 @@ eq
 and
 or
 not
-if-goto false_label13
-label true_label13
+if-goto false_label21
+label true_label21
 push constant 20
 pop local 4
-goto end_label13
-label false_label13
+goto end_label21
+label false_label21
 push constant 5
 pop local 4
-label end_label13
-label end_label12
+label end_label21
+label end_label20
 push this 14
 push constant 1
 eq
 not
-if-goto false_label14
-label true_label14
+if-goto false_label22
+label true_label22
 push constant 506
 pop local 0
 push local 3
@@ -379,14 +379,14 @@ push local 4
 call Math.multiply 2
 add
 pop local 1
-goto end_label14
-label false_label14
+goto end_label22
+label false_label22
 push this 14
 push constant 2
 eq
 not
-if-goto false_label15
-label true_label15
+if-goto false_label23
+label true_label23
 push constant 0
 pop local 0
 push local 3
@@ -401,14 +401,14 @@ push local 4
 call Math.multiply 2
 add
 pop local 1
-goto end_label15
-label false_label15
+goto end_label23
+label false_label23
 push this 14
 push constant 3
 eq
 not
-if-goto false_label16
-label true_label16
+if-goto false_label24
+label true_label24
 push constant 250
 pop local 1
 push local 2
@@ -424,8 +424,8 @@ push local 4
 call Math.multiply 2
 add
 pop local 0
-goto end_label16
-label false_label16
+goto end_label24
+label false_label24
 push constant 0
 pop local 1
 push local 2
@@ -440,9 +440,9 @@ push local 4
 call Math.multiply 2
 add
 pop local 0
-label end_label16
-label end_label15
-label end_label14
+label end_label24
+label end_label23
+label end_label22
 push pointer 0
 push local 0
 push local 1

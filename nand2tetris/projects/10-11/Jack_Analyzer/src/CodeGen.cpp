@@ -737,6 +737,9 @@ void CodeGen::generate_term(const pt &term_tree) {
                 exit(1);
             }
             it++;
+        } else {
+            pt::const_iterator it_copy = term_tree.begin();
+            generate_subroutine_call(it_copy);
         }
     } else {
         // subroutineCall |
@@ -773,7 +776,6 @@ void CodeGen::generate_subroutine_call(pt::const_iterator &it) {
         it++; // pass the ) symbol
         string function_name = className + "." + name;
         writer.write_call(function_name, num + 1);
-
     } else if (data == ".") {
         // (className | varName) '.' subroutineName '(' expressionList ')'
         /**
