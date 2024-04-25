@@ -169,6 +169,7 @@ void CodeGen::generate_parameter_list(const pt &parameter_list_tree) {
 }
 
 void CodeGen::generate_subroutine_body(const pt &subroutine_body_tree) {
+    local_num = 0;
     pt::const_iterator it = subroutine_body_tree.begin();
     it++; // pass the { symbol
     // varDec
@@ -342,6 +343,7 @@ void CodeGen::generate_let(const boost::optional<const pt &> &let_tree) {
 
 void CodeGen::generate_if(const boost::optional<const pt &> &if_tree) {
     int label_count = branch_count;
+    branch_count++;
     /**
      * if format:
      *
@@ -459,7 +461,6 @@ void CodeGen::generate_if(const boost::optional<const pt &> &if_tree) {
     // label end_labelx
 //    output << "label end_label" << label_count << endl;
     writer.write_label("end_label" + std::to_string(label_count));
-    branch_count++;
 }
 
 void CodeGen::generate_while(const boost::optional<const pt &> &while_tree) {
@@ -476,6 +477,7 @@ void CodeGen::generate_while(const boost::optional<const pt &> &while_tree) {
      */
 
     int label_count = branch_count;
+    branch_count++;
 
     // parse the while statement
     pt::const_iterator it = while_tree->begin();
@@ -547,8 +549,6 @@ void CodeGen::generate_while(const boost::optional<const pt &> &while_tree) {
     // label end_while_labelx
 //    output << "label end_while_label" << label_count << endl;
     writer.write_label("end_while_label" + std::to_string(label_count));
-
-    branch_count++;
 }
 
 void CodeGen::generate_do(const boost::optional<const pt &> &do_tree) {

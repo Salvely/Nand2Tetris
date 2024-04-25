@@ -112,13 +112,13 @@ push this 0
 push constant 0
 lt
 not
-if-goto false_label25
-label true_label25
+if-goto false_label26
+label true_label26
 push constant 0
 pop this 0
-goto end_label25
-label false_label25
-label end_label25
+goto end_label26
+label false_label26
+label end_label26
 push constant 0
 call Screen.setColor 1
 pop temp 0
@@ -164,15 +164,15 @@ add
 push constant 511
 gt
 not
-if-goto false_label26
-label true_label26
+if-goto false_label27
+label true_label27
 push constant 511
 push this 2
 sub
 pop this 0
-goto end_label26
-label false_label26
-label end_label26
+goto end_label27
+label false_label27
+label end_label27
 push constant 0
 call Screen.setColor 1
 pop temp 0

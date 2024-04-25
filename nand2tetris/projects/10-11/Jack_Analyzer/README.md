@@ -338,10 +338,10 @@ Todo:
 - [ ] 系统测试
     - [x] Seven: 普通加法测试
     - [x] Average： 求平均值测试，带函数
-    - [ ] ConvertToBin：访存测试
+    - [x] ConvertToBin：访存测试
     - [x] ComplexArrays：嵌套数组测试（着重于let和term）
     - [ ] Pong（系统集成测试）
-    - [ ] Square（系统集成测试）
+    - [x] Square（系统集成测试）
 - [ ] 结合Hardware simulator和OS Tools运行程序
 - [ ] Tiny bug修改
 
@@ -359,3 +359,8 @@ Todo:
 - 直接Pop local 0即可
 - 无需再次设置that指针
 - that指针什么时候设置会有些问题
+- term中如果遇到a[]，需要设置that指针
+
+# ConvertToBin测试问题
+
+- 函数参数个数问题(function的参数个数分别是什么)
