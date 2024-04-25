@@ -34,7 +34,7 @@
 - [x] Reading 10
 - [x] Project 10: Compiler I: Syntax Analysis：Jack 语言语法分析（类 java 语言 -> stack 语言）
 - [x] Reading 11
-- [xx] Project 11: Compiler II: Code Generation：Jack -> 中间代码（类 java 语言 -> stack 语言）
+- [x] Project 11: Compiler II: Code Generation：Jack -> 中间代码（类 java 语言 -> stack 语言）
 
 ## Part IV
 
