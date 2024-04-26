@@ -1,5 +1,7 @@
 # Nand2Tetris
 
+[![wakatime](https://wakatime.com/badge/github/Salvely/Nand2Tetris.svg)](https://wakatime.com/badge/github/Salvely/Nand2Tetris)
+
 ## Schedule
 
 ## Pre Part: Computer Organization
