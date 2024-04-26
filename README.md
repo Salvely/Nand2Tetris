@@ -32,7 +32,7 @@
 ## Part III
 
 - [x] Reading 9
-- [ ] Project 9: High-Level Language：Jack 语言学习(类 java)
+- [x] Project 9: High-Level Language：Jack 语言学习(类 java)
 - [x] Reading 10
 - [x] Project 10: Compiler I: Syntax Analysis：Jack 语言语法分析（类 java 语言 -> stack 语言）
 - [x] Reading 11
@@ -40,5 +40,5 @@
 
 ## Part IV
 
-- [ ] Reading 12
-- [ ] Project 12: Operating System：用 Jack 语言实现一个操作系统（类 java 语言 实现操作系统+俄罗斯方块）
+- [x] Reading 12
+- [x] Project 12: Operating System：用 Jack 语言实现一个操作系统（类 java 语言 实现操作系统+俄罗斯方块）
