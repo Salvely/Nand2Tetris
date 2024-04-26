@@ -1,16 +1,4 @@
-# 第12章阅读笔记
-
-## Background
-
-### Mathematical Operations
-
-### Efficiency First
-
-### Mulplication
-
-### A Comment about Notation
-
-### Division
+# 第 12 章阅读笔记
 
 ### Square Root
 
@@ -46,27 +34,11 @@
 
 ## Jack OS 设计
 
-- Math
-- String
-- Array
-- Output
-- Screen
-- Keyboard
-- Memory
-- Sys
-
-### Math
-
-### String
-
-### Array
-
-### Output
-
-### Screen
-
-### Keyboard
-
-### Memory
-
-### Sys
+- [ ] Math
+- [ ] String
+- [ ] Array
+- [ ] Output
+- [ ] Screen
+- [ ] Keyboard
+- [ ] Memory
+- [ ] Sys
