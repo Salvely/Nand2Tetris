@@ -169,13 +169,9 @@ label IF_END4
 push local 6
 return
 function Math.divide 5
-push argument 0
-push argument 1
-lt
 push argument 1
 push constant 0
 lt
-or
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -206,6 +202,15 @@ push argument 1
 call Math.abs 1
 pop argument 1
 label IF_FALSE2
+push argument 0
+push argument 1
+lt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+return
+label IF_FALSE3
 push local 0
 push local 1
 not
@@ -230,31 +235,33 @@ call Math.multiply 2
 push argument 1
 call Math.multiply 2
 sub
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
+push argument 1
+lt
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
 push constant 2
 push local 4
 call Math.multiply 2
 pop local 3
-goto IF_END3
-label IF_FALSE3
+goto IF_END4
+label IF_FALSE4
 push constant 2
 push local 4
 call Math.multiply 2
 push constant 1
 add
 pop local 3
-label IF_END3
+label IF_END4
 push local 2
 not
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
 push local 3
 neg
 pop local 3
-label IF_FALSE4
+label IF_FALSE5
 push local 3
 return
 function Math.sqrt 3
@@ -271,9 +278,9 @@ push local 1
 push constant 0
 gt
 push local 1
-or
 push constant 0
 eq
+or
 not
 if-goto WHILE_END0
 push local 1
@@ -323,6 +330,10 @@ push that 0
 add
 pop local 0
 label IF_FALSE0
+push local 1
+push constant 1
+sub
+pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push local 0
@@ -332,9 +343,9 @@ push argument 0
 push argument 1
 gt
 push argument 0
-or
 push argument 1
 eq
+or
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -350,9 +361,9 @@ push argument 0
 push argument 1
 lt
 push argument 0
-or
 push argument 1
 eq
+or
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
