@@ -96,7 +96,6 @@ class String {
     method int intValue() {
         var int index;
         var int sum;
-        var int sum;
 
         let sum = 0;
         let index = 0;
