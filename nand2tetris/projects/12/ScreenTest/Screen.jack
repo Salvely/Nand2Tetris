@@ -60,42 +60,120 @@ class Screen {
         var int value;
         var int bit;
         
-        let address = y * 32 + x / 16;
+        let address = (y * 32) + (x / 16);
         let value = Memory.peek(16384 + address);
         let bit = x - ((x / 16) * 16);
         if(color) {
-            let value = value | bitMap[bit];
+            let value = value | (bitMap[bit]);
         }
         else {
-            let value = value & ~bitMap[bit];
+            let value = value & ~(bitMap[bit]);
         }
-        do Memory.poke(address,value);
+        do Memory.poke(16384 + address,value);
         return;
     }
 
     /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
     function void drawLine(int x1, int y1, int x2, int y2) {
-        /**
-        the algorithms as follows:
-            b = current y - y1
-            a = current x - x1
-            if b / a > dy / dx: go right, a = a + 1
-            if b / a < dy / dx: go left, b = b + 1
-            let diff = a * dy - b * dx
-            if diff < 0: go right, a = a + 1, diff = diff + dy
-            if diff > 0: go left, b = b + 1, diff = diff - dx
-        */
+        var boolean right;
+        var boolean up;
+        var int dx;
+        var int dy;
+
+        let dx = x2 - x1;
+        let dy = y2 - y1;
+        
+        if(dx = 0) {
+            // draw vertival line
+            do Screen.drawVerticalLine(x1,y1,y2);
+            return;
+        }
+        if(dy = 0) {
+            // draw horizontal line
+            do Screen.drawHorizontalLine(x1,x2,y1);
+            return;
+        }
+
+        if(dx > 0) {
+            let right = true;
+        }
+        else {
+            let right = false;
+        }
+
+        if(dy > 0) {
+            let up = true;
+        }
+        else {
+            let up = false;
+        }
+
+        if(right & up) {
+            do Screen.drawUpRight(x1,y1,x2,y2);
+            return;
+        }
+        if((~right) & up) {
+            do Screen.drawUpLeft(x1,y1,x2,y2);
+            return;
+        }
+        if(right & (~up)) {
+            do Screen.drawDownRight(x1,y1,x2,y2);
+            return;
+        }
+        if((~right) & (~up)) {
+            do Screen.drawDownLeft(x1,y1,x2,y2);
+            return;
+        }
+        return;
+    }
+
+    function void drawVerticalLine(int x, int y1, int y2) {
+        var int max;
+        var int min;
+        let max = Math.max(y1,y2);
+        let min = Math.min(y1,y2);
+        while((min < max) | (min = max)) {
+            do Screen.drawPixel(x,min);
+            let min = min + 1;
+        }
+        return;
+    }
+
+    function void drawHorizontalLine(int x1, int x2, int y) {
+        var int max;
+        var int min;
+        let max = Math.max(x1,x2);
+        let min = Math.min(x1,x2);
+        while((min < max)|(min = max)) {
+            do Screen.drawPixel(min,y);
+            let min = min + 1;
+        }
+        return;
+    }
+
+    function void drawUpRight(int x1, int y1, int x2, int y2) {
         var int a;
         var int b;
         var int diff;
         var int dx;
         var int dy;
-        
+
         let a = 0;
         let b = 0;
         let diff = 0;
         let dx = x2 - x1;
         let dy = y2 - y1;
+
+        /**
+        if going right, going up, the algorithms as follows:
+            b = current y - y1
+            a = current x - x1
+            if b / a > dy / dx: go right, a = a + 1
+            if b / a < dy / dx: go up, b = b + 1
+            let diff = a * dy - b * dx
+            if diff < 0: go right, a = a + 1, diff = diff + dy
+            if diff > 0: go up, b = b + 1, diff = diff - dx
+        **/
         
         while(((a < dx)|(a = dx)) & ((b < dy) | (b = dy))) {
             do Screen.drawPixel(x1 + a, y1 + b);
@@ -111,19 +189,60 @@ class Screen {
         return;
     }
 
+    function void drawDownLeft(int x1, int y1, int x2, int y2) {
+        do Screen.drawUpRight(x2,y2,x1,y1);
+        return;
+    }
+
+    function void drawDownRight(int x1, int y1, int x2, int y2) {
+        /**
+        if going right, down
+        b = current y - y1
+        a = current x - x1
+        if b / a > dy / dx: go down, b = b - 1
+        if b / a < dy / dx: go right, a = a + 1
+        let diff = a * dy - b * dx
+        if diff < 0: go right, b = b - 1, diff = diff + dx
+        if diff > 0: go down, a = a + 1, diff = diff + dy
+        */
+        var int a;
+        var int b;
+        var int diff;
+        var int dx;
+        var int dy;
+
+        let a = 0;
+        let b = 0;
+        let diff = 0;
+        let dx = x2 - x1;
+        let dy = y2 - y1;
+
+        while(((a < dx)|(a = dx)) & ((b > dy) | (b = dy))) {
+            do Screen.drawPixel(x1 + a, y1 + b);
+            if(diff > 0) {
+                let a = a + 1;
+                let diff = diff + dy;
+            }
+            else {
+                let b = b - 1;
+                let diff = diff + dx;
+            }
+        }
+        return;
+    }
+
+    function void drawUpLeft(int x1, int y1, int x2, int y2) {
+        do Screen.drawDownRight(x2,y2,x1,y1);
+        return;
+    }
+
     /** Draws a filled rectangle whose top left corner is (x1, y1)
      *  and bottom right corner is (x2,y2), using the current color. */
     function void drawRectangle(int x1, int y1, int x2, int y2) {
-        // draw 2 vertical lines
-        // (x1,y2) -> (x1,y1)
-        do Screen.drawLine(x1,y2,x1,y1);
-        // (x2,y2) -> (x2,y1)
-        do Screen.drawLine(x2,y2,x2,y1);
-        // draw 2 horizontal lines
-        // (x1,y1) -> (x2,y1)
-        do Screen.drawLine(x1,y1,x2,y1);
-        // (x1,y2) -> (x2,y2)
-        do Screen.drawLine(x1,y2,x2,y2);
+        while((y1 < y2) | (y2 = y1)) {
+            do Screen.drawLine(x1,y1,x2,y1);
+            let y1 = y1 + 1;
+        }
         return;
     }
 
@@ -140,6 +259,7 @@ class Screen {
             let left_x = x - dx;
             let right_x = x + dx;
             do Screen.drawLine(left_x, y + dy, right_x, y + dy);
+            let dy = dy + 1;
         }
         return;
     }
